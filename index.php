@@ -12,7 +12,7 @@
 </head>
 <body>
 	<div class="container mt-5">
-		<h2>Upload a file</h2>
+		<h2>Upload a test</h2>
 		<form action="upload.php" method="POST" enctype="multipart/form-data">
 			<div class="mb-3">
 				<label for="file" class="form-label">Select file</label>
