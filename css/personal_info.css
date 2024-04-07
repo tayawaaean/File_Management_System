@@ -94,18 +94,22 @@ input[type='text']{
     border-radius: 15%;
 }
 
+@media screen and (max-width: 768px) {
+    body {
+        overflow: hidden;
+    }
 
-@media  screen and (max-width: 768px) {
     .container {
         display: grid;
         gap: 5px;
-        margin: 14px;
+        margin: 14px auto; /* Center the container horizontally */
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: auto;
         grid-template-areas: 
-            "header"
-            "first-side" 
-            "second-side" 
-            "third-side";
+            "header header header"
+            "first-side first-side first-side" 
+            "second-side second-side second-side" 
+            "third-side third-side third-side";
     }
 }
+
