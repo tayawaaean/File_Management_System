@@ -139,17 +139,18 @@ input[type='text']{
     .white-bg span{
         margin-bottom: -2%;
     }
+
+@media  screen and (max-width: 768px) {
     .container {
         display: grid;
         gap: 5px;
-        margin: 14px auto; /* Center the container horizontally */
+        margin: 14px;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: auto;
         grid-template-areas: 
-            "header header header"
-            "first-side first-side first-side" 
-            "second-side second-side second-side" 
-            "third-side third-side third-side";
+            "header"
+            "first-side" 
+            "second-side" 
+            "third-side";
     }
 }
-
