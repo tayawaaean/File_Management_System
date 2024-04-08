@@ -4,23 +4,91 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/css/personal_info.css">
+    <link rel="stylesheet" href="/css/style-personal-info.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <title>Document</title>
 </head>
 <body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="images/logo.png" alt="">
+            </div>
+
+            <span class="logo_name">Bingao NHS</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="index.html">
+                    <i class="uil uil-estate"></i>
+                    <span class="link-name">Dashboard</span>
+                </a></li>
+                <li><a href="storage.html">
+                    <i class="material-symbols-outlined">save</i>
+                    <span class="link-name">My Storage</span>
+                </a></li>
+                <li><a href="/personal_info.html">
+                    <i class="material-symbols-outlined">person</i>
+                    <span class="link-name">Users</span>
+                </a></li>
+            </ul>
+            
+            <ul class="logout-mode">
+                <li><a href="#">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Logout</span>
+                </a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search anything...">
+            </div>
+            
+            <img src="images/user.jpeg" alt="">
+        </div>
     <div class="container">
         <div class="header">
-           <p class="textheader">Header</p>
+           <div class="background">
+            <img class="image-background-profile" src="/img/background-lang.jpg" alt="background-lang">
+            <div class="profile-image">
+                <div class="image-user">
+                    <img src="/Images/user.jpeg" alt="">
+                </div>
+            </div>
+            <div class="white-bg">
+                <span class="userName" id="userName"></span>
+                <span class="userTitle" id="work-title"></span>
+            </div>
+           </div>
         </div>
         <div class="first-side">
             <div class="operation">
                 <p class="textheader">Contact</p>
-                <a class="cancel-btn"  id="cancel-btn">Cancel</a> 
-                <button type="submit" class="save-btn" id="save-btn">Save</button>
+                <div class="buttons">
+                <a class="cancel-btn"  id="cancel-btn"><span class="material-symbols-outlined">
+                    close
+                    </span></i></a> 
+                <a class="save-btn" id="save-btn"><span class="material-symbols-outlined">
+                    check_small
+                    </span></a>
                 <a class="edit-info-btn"  id="contact-edit"><img src="/img/edit-246.png" alt="edit-icon"></a>
+                </div>
             </div>
             <div class="content-info">
-            <label class="user-label" for="email">Email</label>
-            <input type="text" id="email" readonly value="jjtengtejada754gmail"> 
+            <label class="user-label" for="email">Email</label> 
+            <input type="text" id="email" readonly value="jjtengtejada754gmail">
+            
         
             <label class="user-label" for="phone">Phone</label>
             <input type="text" id="phone" readonly value="00000000000"> 
@@ -36,15 +104,21 @@
 
         <div class="second-side">
             <div class="operation">
-                <p class="textheader">User Info</p>
-                <a class="cancel-btn"  id="cancel-btn-info">Cancel</a> 
-                <button type="submit" class="save-btn" id="save-btn-info">Save</button>
+                <p class="textheader">User Information</p>
+                <div class="buttons">
+                <a class="cancel-btn"  id="cancel-btn-info"><span class="material-symbols-outlined">
+                    close
+                    </span></i></a> 
+                <a class="save-btn" id="save-btn-info"><span class="material-symbols-outlined">
+                    check_small
+                    </span></a>
                 <a class="edit-info-btn"  id="info-edit"><img src="/img/edit-246.png" alt="edit-icon"></a>
+                </div>
             </div>
             <div class="content-info">
 
             <label class="user-label"  for="name">Name</label>
-            <input type="text" id="name" readonly value="Johnny Sins"> 
+            <input type="text" id="name" readonly value="Kenric Catiwa"> 
 
             <label class="user-label" for="birthday">BirthDay</label>
             <input type="text" id="birthday" readonly value="05 June 2002"> 
@@ -59,9 +133,15 @@
         <div class="third-side">
                 <div class="operation">
                     <p class="textheader">Work</p>
-                    <a class="cancel-btn"  id="cancel-btn-work">Cancel</a> 
-                    <button type="submit" class="save-btn" id="save-btn-work">Save</button>
+                    <div class="buttons">
+                    <a class="cancel-btn"  id="cancel-btn-work"><span class="material-symbols-outlined">
+                        close
+                        </span></i></a> 
+                    <a class="save-btn" id="save-btn-work"><span class="material-symbols-outlined">
+                        check_small
+                        </span></a>
                     <a class="edit-info-btn"  id="work-edit"><img src="/img/edit-246.png" alt="edit-icon"></a>
+                    </div>
                 </div>
             
             <div class="content-info">
@@ -81,4 +161,5 @@
     </div>
 </body>
 <script src="/js/personal-info.js"></script>
+<script src="script.js"></script>
 </html>
