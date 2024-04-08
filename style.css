@@ -28,7 +28,7 @@
 
 body{
     min-height: 100vh;
-    background-color: var(--primary-color);
+    background-color: whitesmoke;
 }
 body.dark{
     --primary-color: #3A3B3C;
@@ -50,13 +50,13 @@ body.dark{
     background: #f1f1f1;
 }
 ::-webkit-scrollbar-thumb {
-    background: var(--primary-color);
+    background-color: #0E4BF1;
     border-radius: 12px;
     transition: all 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: #0b3cc1;
+    background-color: #0E4BF1;
 }
 
 body.dark::-webkit-scrollbar-thumb:hover,
@@ -65,10 +65,12 @@ body.dark .activity-data::-webkit-scrollbar-thumb:hover{
 }
 
 h2{
-    font-weight: 600;
-    font-size: 40px;
-    color: var(--text-color);
+    font-size: 50px;
+    font-weight: bold;
+    color: #0B360A;
+    font-family: montserrat;
 }
+
 nav{
     position: fixed;
     top: 0;
@@ -278,6 +280,7 @@ nav.close ~ .dashboard .top{
 }
 .dashboard .dash-content{
     padding-top: 50px;
+    margin: 40px;
 }
 .dash-content .title{
     display: flex;
@@ -290,7 +293,6 @@ nav.close ~ .dashboard .top{
     height: 35px;
     width: 35px;
     border-radius: 6px;
-    color: var(--title-icon-color);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -302,6 +304,50 @@ nav.close ~ .dashboard .top{
     color: var(--text-color);
     margin-left: 10px;
 }
+.buttons{
+    background-color: white;
+    margin-left: auto;
+    margin-right: 10px;
+    border-radius: 20px;
+}
+.buttons button {
+    border-color: #DDD;
+    border-radius: 15px; /* Adjust the value as needed to make the button oval */
+}
+.table{
+    width: 100%;
+    border-collapse: collapse;
+    color:#000;
+    font-family: 'Lato', sans-serif;
+    border: 1px solid #DDD;
+    table-layout: fixed;
+}
+.table th{
+    background-color: lightblue;
+    color: black;
+    padding: 10px;
+    text-align: left;
+    border-right: 1px black;
+}
+.table td:first-child{
+    border-left: 1px solid #DDD;
+}
+.table td{
+    padding: 10px;
+    border-bottom: 1px solid #DDD;
+    border-right: 1px solid #DDD;
+    color: #000;
+}
+
+hr {
+    margin-top: -30px;
+    margin-bottom: 40px;
+    border-top: 1px solid #DDD;
+}
+.text{
+    display: flex;
+    flex-direction: column;
+}
 .dash-content .boxes{
     display: flex;
     align-items: center;
@@ -310,31 +356,50 @@ nav.close ~ .dashboard .top{
 }
 .dash-content .boxes .box{
     display: flex;
-    flex-direction: column;
     align-items: center;
-    border-radius: 12px;
+    border-radius: 20px;
     width: calc(100% / 2 - 15px);
-    padding: 15px 20px;
-    background-color: #0E4BF1;
+    padding: 24px;
+    background-color: whitesmoke;
     transition: var(--tran-05);
+    grid-gap: 24px;
 }
 .boxes .box i{
-    font-size: 35px;
-    color: var(--text-color);
+    background: lightblue;
+    font-size: 36px;
+    color: blue;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.boxes .box i2{
+    background: #fff2c6;
+    font-size: 36px;
+    color: #ffce26;
+    width: 80px;
+    height: 80px;
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .boxes .box .text{
     white-space: nowrap;
     font-size: 18px;
-    font-weight: 500;
     color: var(--text-color);
+
 }
 .boxes .box .number{
-    font-size: 40px;
-    font-weight: 500;
+    font-size: 24px;
+    font-weight: 600;
+    text-align: left;
     color: var(--text-color);
 }
 .boxes .box.box2{
-    background-color: gold;
+    background-color: whitesmoke;
 }
 .boxes .box.box3{
     background-color: var(--box3-color);
@@ -423,6 +488,15 @@ nav.close ~ .dashboard .top{
 .nav-links li:hover .link-name,
 .nav-links li.active .link-name {
     color: white; /* Change text color on hover and active */
+}
+
+.dashboard-table-wrapper {
+    max-height: 280px;
+    overflow-y: auto;
+}
+
+.dashboard-table-wrapper::-webkit-scrollbar-thumb {
+    background-color: #0E4BF1;
 }
 
 @media (max-width: 1000px) {
@@ -518,5 +592,54 @@ nav.close ~ .dashboard .top{
     nav.close ~ .dashboard .top{
         left: 0;
         width: 100%;
+    }
+}
+@media (max-width: 414px){
+    .dashboard .dash-content{
+        margin: 10px;
+    }
+    hr{
+        margin-bottom: 0px;
+    }
+    .dash-content .title{
+        display: block;
+        align-items: center;
+        margin: 0px 0 30px 0;
+        justify-content: space-between;
+    }
+    .dash-content .title .text{
+        font-size: 20px;
+        margin-left: 0px;
+        margin-top: -5px;
+    }
+    .buttons{
+        margin-top: 10px;
+    }
+    .bottom-search input[type="text"]{
+        margin-top: 20px;
+    }
+    .bottom-search .search i{
+        margin-top: 20px;
+    }
+    .table-container {
+        overflow-x: auto;
+        max-width: 414px;
+    }
+    .table{
+        width: 750px;
+        table-layout: fixed;
+    }
+    .dashboard-table-wrapper {
+        max-height: 265px; /* Maximum height */
+        overflow-y: auto; /* Vertical scrolling */
+    }
+    .dashboard-table-wrapper::-webkit-scrollbar {
+        width: 5px; /* Adjust the width of the scrollbar */
+        height: 5px;
+    }
+    
+    /* For WebKit browsers (e.g., Chrome, Safari) */
+    .table-container::-webkit-scrollbar-thumb {
+        background-color: #0E4BF1; /* Color of the scrollbar thumb */
     }
 }
