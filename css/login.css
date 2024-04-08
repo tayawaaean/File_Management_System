@@ -1,0 +1,171 @@
+/*
+  <color name="Rich black" hex="192028" r="25" g="32" b="40" />
+  <color name="Beige" hex="F9FAE5" r="249" g="250" b="229" />
+  <color name="White" hex="FEFEFE" r="254" g="254" b="254" />
+  <color name="Dark blue" hex="0204B6" r="2" g="4" b="182" />
+  <color name="Palatinate blue" hex="2F2BD0" r="47" g="43" b="208" />
+*/
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+
+body{
+    min-height: 100vh;
+    background-color: rgb(220,220,220);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Source Sans Pro' , sans-serif;
+}
+
+.container{
+    width:50vh;
+    height: 65vh;
+    border-radius: 3vh;
+    background-color:inherit;
+    box-shadow: 10px 10px 20px rgba(0,0,0,0.2),
+            -10px -10px 20px rgba(255, 255, 255, 0.8);
+}
+
+.top{
+    text-align: center;
+    margin-bottom: 10vh;
+}
+
+.image{
+    width: 10vh;
+    height: 10vh;
+    position: relative;
+    left: 20vh;
+    top:3vh;
+}
+
+.image img{
+    width: 100%;
+    height: 100%;
+}
+
+.top span{
+    position: relative;
+    top: 3vh;
+    font-weight: Bold;
+    font-size:3vh;
+    letter-spacing: 0.2vh;
+}
+
+.inputBox{
+    display: flex;
+    border-radius: 4vh;
+    justify-content: space-around;
+    align-items: center;
+    margin-left: 4.5vh;
+    margin-bottom: 4vh;
+    width: 40vh;
+    height: 6vh;
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.1), 
+        -5px -5px 10px rgba(255, 255, 255, 0.6);
+
+}
+.inputBox:focus-within{
+    box-shadow: 5px 5px 10px rgba(0,0,0,0.1),
+        -5px -5px 10px rgba(255, 255, 255, 0.5),
+        5px 5px 10px rgba(0,0,0, 0.1),
+        -5px -5px 10px rgba(255, 255, 255, 0.5);
+    outline: 0.5vh solid rgba(255, 255, 255, 0.42);
+}
+.input{
+    height: 4vh;
+    width: 30vh;
+    margin-left: -2vh;
+    border: none;
+    outline: none;
+    background-color: inherit;
+}
+
+.button-submit{
+    margin-top: 2vh;
+    height: 6vh;
+    width: 12vh;
+    border: none;
+    background-color: rgba(40, 40, 40, 0.1);
+    border-radius: 5vh;
+    cursor: pointer;
+    box-shadow: 4px 4px 5px rgba(0,0,0,0.3),
+        -4px -4px 5px rgba(255, 255, 255, 0.7);
+    font-weight: bold;
+}
+
+.button-submit:hover{
+    outline: 0.3vh groove rgba(255, 255, 255, 0.5);
+}
+
+form{
+    text-align: center;
+}
+
+.users{
+    margin-top: 3vh;
+}
+
+.users span{
+    margin-left: 1vh;
+    font-size: 2.3vh;
+    font-weight: bold;
+    color: #2F2BD0;
+    cursor: pointer
+}
+
+.inputBack{
+    height: 5vh;
+    margin-bottom: 3vh;
+}
+
+.imageBack{
+    width: 8vh;
+    height: 8vh;
+    left: 21.3vh;
+}
+
+.topBack{
+    margin-bottom: 7vh;
+}
+
+.submitBack{
+    margin-top: -1vh;
+    height: 5vh;
+    width: 10vh;
+    font-size: 1.8vh;
+}
+
+.usersBack{
+    margin-top: 2.5vh;
+}
+
+.containerFront{
+    position: absolute;
+    z-index: 2;
+    transition: 1.5s ease-in-out;
+}
+.containerBack{
+    transition: 1.5s ease-in-out;
+    position: absolute;
+    z-index: 1;
+    transform: rotateY(180deg);
+}
+
+.containerSide{
+    transition: 1.5s ease-in-out;
+    position: absolute;
+    z-index: 0;
+    transform: rotateY(180deg);
+}
+
+.forgot-pass #forgotPass{
+    font-weight: normal;
+    font-size: 16px;
+}
