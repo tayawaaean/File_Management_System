@@ -121,7 +121,7 @@ input[type='text']{
 }
 .image-user img{
     position: absolute;
-    width: 11%;
+    width: 10%;
     height: auto;
     margin-left: 2%;
     margin-top: -7%;
@@ -153,4 +153,5 @@ input[type='text']{
             "second-side" 
             "third-side";
     }
+}
 }
