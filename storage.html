@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+    <title>Admin Dashboard Panel</title> 
+</head>
+<body>
+    <nav>
+        <div class="logo-name">
+            <div class="logo-image">
+                <img src="images/logo.png" alt="">
+            </div>
+
+            <span class="logo_name">Bingao NHS</span>
+        </div>
+
+        <div class="menu-items">
+            <ul class="nav-links">
+                <li><a href="index.html">
+                    <i class="uil uil-estate"></i>
+                    <span class="link-name">Dashboard</span>
+                </a></li>
+                <li><a href="storage.html">
+                    <i class="material-symbols-outlined">save</i>
+                    <span class="link-name">My Storage</span>
+                </a></li>
+                <li><a href="#">
+                    <i class="material-symbols-outlined">person</i>
+                    <span class="link-name">Users</span>
+                </a></li>
+            </ul>
+            
+            <ul class="logout-mode">
+                <li><a href="#">
+                    <i class="uil uil-signout"></i>
+                    <span class="link-name">Logout</span>
+                </a></li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                    <span class="link-name">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                  <span class="switch"></span>
+                </div>
+            </li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="dashboard">
+        <div class="top">
+            <i class="uil uil-bars sidebar-toggle"></i>
+
+            <div class="search-box">
+                <i class="uil uil-search"></i>
+                <input type="text" placeholder="Search anything...">
+            </div>
+            
+            <img src="images/user.jpeg" alt="">
+        </div>
+
+        <div class="dash-content">
+            <div class="overview">
+                <div class="title">
+                    <h2>Dashboard</h2>
+                </div>
+
+                <div class="boxes">
+                    <div class="box box1">
+                        <i class="material-symbols-outlined">person</i>
+                        <span class="text">Total Users</span>
+                        <span class="number">12</span>
+                    </div>
+                    <div class="box box2">
+                        <i class="material-symbols-outlined">folder_open</i>
+                        <span class="text">Total Files</span>
+                        <span class="number">1,028</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="container">
+                <div class="activity">
+                    <div class="title">
+                        <span class="text">Documents</span>
+                        <div class="bottom-search">
+                            <div class="search">
+                                <i class="uil uil-search"></i>
+                                <input type="text" placeholder="Search...">
+                            </div>
+                            <div class="filter">
+                                <select>
+                                    <option value="name">Name</option>
+                                    <option value="email">Email</option>
+                                    <option value="joined">Joined</option>
+                                    <option value="type">Type</option>
+                                    <option value="status">Status</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="activity-data">
+                        <div class="data names">
+                            <span class="data-title">File Name</span>
+                            <span class="data-list">4A Students</span>
+                        </div>
+                    <div class="data email">
+                        <span class="data-title">Type</span>
+                        <span class="data-list">Pdf</span>
+                        
+                    </div>
+                    <div class="data joined">
+                        <span class="data-title">Last Modified</span>
+                        <span class="data-list">2022-02-12</span>
+                    </div>
+                    <div class="data type">
+                        <span class="data-title">File Size</span>
+                        <span class="data-list">40 MB</span>
+                    </div>
+                    <div class="data type">
+                        <span class="data-title">Uploaded By</span>
+                        <span class="data-list">Kenric Catiwa</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="container">
+            <div class="activity">
+                <div class="title">
+                    <span class="text">Recent Files</span>
+                    <div class="bottom-search">
+                        <div class="search">
+                            <i class="uil uil-search"></i>
+                            <input type="text" placeholder="Search...">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity-data">
+                    <div class="data names">
+                        <span class="data-title">File Name</span>
+                        <span class="data-list">4A Students</span>
+                    </div>
+                <div class="data email">
+                    <span class="data-title">Type</span>
+                    <span class="data-list">Pdf</span>
+                    
+                </div>
+                <div class="data joined">
+                    <span class="data-title">Last Modified</span>
+                    <span class="data-list">2022-02-12</span>
+                </div>
+                <div class="data type">
+                    <span class="data-title">File Size</span>
+                    <span class="data-list">40 MB</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script src="script.js"></script>
+</body>
+</html>
