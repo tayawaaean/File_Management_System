@@ -16,7 +16,7 @@
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-                <img src="images/logo.png" alt="">
+                <img src="../images/logo.png" alt="">
             </div>
 
             <span class="logo_name">Bingao NHS</span>
@@ -43,6 +43,17 @@
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Logout</span>
                 </a></li>
+
+                <li class="mode">
+                    <a href="#">
+                        <i class="uil uil-moon"></i>
+                    <span class="link-name">Dark Mode</span>
+                </a>
+
+                <div class="mode-toggle">
+                  <span class="switch"></span>
+                </div>
+            </li>
             </ul>
         </div>
     </nav>
@@ -78,88 +89,87 @@
                     </div>
                 </div>
             </div>
-            <div class="analyse">
-                <div class="container">
-                    <div class="activity">
-                        <div class="title">
-                            <span class="text">Documents</span>
-                            <div class="bottom-search">
-                                <div class="search">
-                                    <i class="uil uil-search"></i>
-                                    <input type="text" placeholder="Search...">
-                                </div>                        
-                            </div>
-                        </div>
 
-                        <div class="activity-data">
-                            <div class="data filenames">
-                                <span class="data-title">File Name</span>
-                                <span class="data-list">4A Students</span>
-                                <span class="data-list">Learner Commitment form in Accessing DICT LMS (Annex D)</span>
-                            </div>
-                        <div class="data type">
-                            <span class="data-title">Type</span>
-                            <span class="data-list">Pdf</span>
-                            <span class="data-list">Excel</span>
-                        </div>
-                        <div class="data modified">
-                            <span class="data-title">Last Modified</span>
-                            <span class="data-list">2022-02-12</span>
-                            <span class="data-list">2024-04-13</span>
-                        </div>
-                        <div class="data size">
-                            <span class="data-title">File Size</span>
-                            <span class="data-list">40 MB</span>
-                            <span class="data-list">12 MB</span>
-                        </div>
-                        <div class="data owner">
-                            <span class="data-title">Owner</span>
-                            <span class="data-list">Kenric Catiwa</span>
-                            <span class="data-list">Aean Tayawa</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div class="container">
                 <div class="activity">
                     <div class="title">
-                        <span class="text">Recent Files</span>
+                        <span class="text">Documents</span>
                         <div class="bottom-search">
                             <div class="search">
                                 <i class="uil uil-search"></i>
                                 <input type="text" placeholder="Search...">
                             </div>
+                            <div class="filter">
+                                <select>
+                                    <option value="name">Name</option>
+                                    <option value="email">Email</option>
+                                    <option value="joined">Joined</option>
+                                    <option value="type">Type</option>
+                                    <option value="status">Status</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
 
                     <div class="activity-data">
-                        <div class="data filenames">
+                        <div class="data names">
                             <span class="data-title">File Name</span>
                             <span class="data-list">4A Students</span>
-                            <span class="data-list">Mariano Marcos State University (Waiver)</span>
                         </div>
-                    <div class="data type">
+                    <div class="data email">
                         <span class="data-title">Type</span>
                         <span class="data-list">Pdf</span>
-                    
+                        
                     </div>
-                    <div class="data modified">
+                    <div class="data joined">
                         <span class="data-title">Last Modified</span>
                         <span class="data-list">2022-02-12</span>
                     </div>
-                    <div class="data size">
+                    <div class="data type">
                         <span class="data-title">File Size</span>
                         <span class="data-list">40 MB</span>
                     </div>
-                    <div class="data ownder">
-                        <span class="data-title">Owner</span>
+                    <div class="data type">
+                        <span class="data-title">Uploaded By</span>
                         <span class="data-list">Kenric Catiwa</span>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="container">
+            <div class="activity">
+                <div class="title">
+                    <span class="text">Recent Files</span>
+                    <div class="bottom-search">
+                        <div class="search">
+                            <i class="uil uil-search"></i>
+                            <input type="text" placeholder="Search...">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="activity-data">
+                    <div class="data names">
+                        <span class="data-title">File Name</span>
+                        <span class="data-list">4A Students</span>
+                    </div>
+                <div class="data email">
+                    <span class="data-title">Type</span>
+                    <span class="data-list">Pdf</span>
+                    
+                </div>
+                <div class="data joined">
+                    <span class="data-title">Last Modified</span>
+                    <span class="data-list">2022-02-12</span>
+                </div>
+                <div class="data type">
+                    <span class="data-title">File Size</span>
+                    <span class="data-list">40 MB</span>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <script src="script.js"></script>
+    <script src="../script.js"></script>
 </body>
 </html>
