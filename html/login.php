@@ -51,22 +51,22 @@
             <span>Sign Up</span>
         </div>
         <div class="sign-in sign-upBack">
-            <form action="" class="sign-in-form">
+            <form action="register.php" class="sign-in-form" method="post">
                 <div class="inputBox inputBack">
                     <i class="fa-solid fa-n"></i>
-                    <input type="text" placeholder="name" class="input">
+                    <input type="text" placeholder="name" class="input" id="name" name="name">
                 </div>
                 <div class="inputBox inputBack">
                     <i class="fa-solid fa-envelope"></i>
-                    <input type="email" placeholder="email" class="input">
+                    <input type="email" placeholder="email" class="input" id="email" name="email">
                 </div>
                 <div class="inputBox inputBack">
                     <i class="fas fa-user"></i>
-                    <input type="text" placeholder="username" class="input">
+                    <input type="text" placeholder="username" class="input" id="username" name="username">
                 </div>
                 <div class="inputBox inputBoxBack">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="password" class="input">
+                    <input type="password" placeholder="password" class="input" id="password" name="password">
                 </div>
                 <button class="button-submit submitBack">Sign Up</button>
                 
