@@ -1,5 +1,46 @@
-<?php include '../connection/connection.php';?>
-<?php include '../html/forgot_password.php';?>
+<?php
+// Database connection credentials
+$servername = "localhost";
+$username = "root"; // Replace with your MySQL username
+$password = ""; // Replace with your MySQL password
+$database = "File_management_system_bingao";
+
+// Create connection
+$conn = new mysqli($servername, $username, $password, $database);
+
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+function login($username, $password, $conn) {
+    global $database;
+    $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+    $result = $conn->query($sql);
+    
+    if ($result->num_rows > 0) {
+        // Account found, return account details
+        return $result->fetch_assoc();
+    } else {
+        // Account not found
+        return null;
+    }
+}
+
+// Check if the form is submitted
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST["username"];
+    $password = $_POST["password"];
+    $user = login($username, $password, $conn);
+    if ($user) {
+        // Login successful, redirect to index.html
+        header("Location: index.html");
+        exit();
+    }
+    // No redirect if login failed
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +51,6 @@
     <link rel="stylesheet" href="../css/main.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-
 </head>
 <body>
     <div class="container containerFront">
@@ -21,22 +61,26 @@
             <span>Sign in</span>
         </div>
         <div class="sign-in">
-            <form action="" class="sign-in-form">
+            <!-- Display message if user is not registered -->
+            <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && !$user): ?>
+                <p style="color: red;">Username or password incorrect. Please check your credentials or <a href="register.php">register here</a>.</p>
+            <?php endif; ?>
+            <form action="" class="sign-in-form" method="post">
                 <div class="inputBox inputBoxFront">
                     <i class="fas fa-user"></i>
-                    <input type="text" placeholder="username" class="input">
+                    <input type="text" placeholder="username" class="input" name="username">
                 </div>
                 <div class="inputBox inputBoxFront">
                     <i class="fas fa-lock"></i>
-                    <input type="password" placeholder="password" class="input">
+                    <input type="password" placeholder="password" class="input" name="password">
                 </div>
-                <button class="button-submit">Sign in</button>
+                <button class="button-submit" type="submit">Sign in</button>
                 
                 <div class="users">
-                    <label>Don't have account yet?</label>
+                    <label>Don't have an account yet?</label>
                     <span class="newUser">Sign Up</span>
                     <div class="forgot-pass">
-                        <span class= "forgotPass" id="forgotPass">Forgot password?</span>
+                        <span class="forgotPass" id="forgotPass">Forgot password?</span>
                     </div>
                 </div>
             </form>
@@ -114,24 +158,23 @@
     <script src="../js/login.js"></script>
     <script>
         document.getElementById("forgotPassword").addEventListener("click", function() {
-    var name = document.querySelector('.inputBox input[name="name"]').value;
-    var email = document.querySelector('.inputBox input[name="email"]').value;
-    var username = document.querySelector('.inputBox input[name="username"]').value;
-    var newPassword = document.querySelector('.inputBox input[name="new_password"]').value;
+            var name = document.querySelector('.inputBox input[name="name"]').value;
+            var email = document.querySelector('.inputBox input[name="email"]').value;
+            var username = document.querySelector('.inputBox input[name="username"]').value;
+            var newPassword = document.querySelector('.inputBox input[name="new_password"]').value;
 
-    // AJAX Request
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', 'forgot_password.php', true);
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function() {
-        if (xhr.readyState == 4 && xhr.status == 200) {
-            // Handle the response from the server
-            alert(xhr.responseText);
-        }
-    };
-    xhr.send('name=' + name + '&email=' + email + '&username=' + username + '&new_password=' + newPassword);
-});
+            // AJAX Request
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', 'forgot_password.php', true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState == 4 && xhr.status == 200) {
+                    // Handle the response from the server
+                    alert(xhr.responseText);
+                }
+            };
+            xhr.send('name=' + name + '&email=' + email + '&username=' + username + '&new_password=' + newPassword);
+        });
     </script>
 </body>
-
 </html>
