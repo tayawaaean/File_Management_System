@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pending Requests</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .container {
+            max-width: 800px;
+            margin: 40px auto;
+        }
+        h2 {
+            margin-bottom: 30px;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+        }
+        .card:hover {
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .btn {
+            padding: 5px 15px;
+            font-size: 14px;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2 class="text-center">Pending Requests</h2>
+
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Pending Request 1</h5>
+                    <p class="card-text">User: Jane Doe</p>
+                    <button class="btn btn-success btn-sm mr-2">Accept</button>
+                    <button class="btn btn-danger btn-sm">Deny</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 mb-4">
+            <div class="card">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Pending Request 2</h5>
+                    <p class="card-text">User: Bob Smith</p>
+                    <button class="btn btn-success btn-sm mr-2">Accept</button>
+                    <button class="btn btn-danger btn-sm">Deny</button>
+                </div>
+            </div>
+        </div>
+        <!-- Add more cards for pending requests as needed -->
+    </div>
+</div>
+
+</body>
+</html>
