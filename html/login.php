@@ -1,5 +1,6 @@
 <?php include '../connection/connection.php';?>
 <?php include '../html/forgot_password.php';?>
+<?php include '../html/register.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
