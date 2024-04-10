@@ -3,7 +3,7 @@
 $servername = "localhost";
 $username = "root"; // Replace with your MySQL username
 $password = ""; // Replace with your MySQL password
-$database = "File_management_system_bingao";
+$database = "file_management_system_bingao";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, $database);
@@ -134,14 +134,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <div class="sign-in sign-upBack">
             <form id="forgotPasswordForm" class="sign-in-form">
                 <div class="inputBox inputBack">
-                    <i class="fa-solid fa-n"></i>
-                    <input type="text" placeholder="name" name="name" class="input">
-                </div>
-                <div class="inputBox inputBack">
-                    <i class="fa-solid fa-envelope"></i>
-                    <input type="email" placeholder="email" name="email" class="input">
-                </div>
-                <div class="inputBox inputBack">
                     <i class="fas fa-user"></i>
                     <input type="text" placeholder="username" name="username" class="input">
                 </div>
@@ -161,8 +153,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <script src="../js/login.js"></script>
     <script>
         document.getElementById("forgotPassword").addEventListener("click", function() {
-            var name = document.querySelector('.inputBox input[name="name"]').value;
-            var email = document.querySelector('.inputBox input[name="email"]').value;
             var username = document.querySelector('.inputBox input[name="username"]').value;
             var newPassword = document.querySelector('.inputBox input[name="new_password"]').value;
 
@@ -176,7 +166,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     alert(xhr.responseText);
                 }
             };
-            xhr.send('name=' + name + '&email=' + email + '&username=' + username + '&new_password=' + newPassword);
+            xhr.send('username=' + username + '&new_password=' + newPassword);
         });
     </script>
 </body>
