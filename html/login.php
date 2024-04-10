@@ -15,7 +15,10 @@ if ($conn->connect_error) {
 
 function login($username, $password, $conn) {
     global $database;
-    $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+    // Hash the provided password
+    $hashed_password = md5($password);
+    // Query to fetch user details based on username and hashed password
+    $sql = "SELECT * FROM users WHERE username='$username' AND password='$hashed_password'";
     $result = $conn->query($sql);
     
     if ($result->num_rows > 0) {
