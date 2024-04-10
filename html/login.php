@@ -1,49 +1,7 @@
 <?php
-// Database connection credentials
-$servername = "localhost";
-$username = "root"; // Replace with your MySQL username
-$password = ""; // Replace with your MySQL password
-$database = "file_management_system_bingao";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $database);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}
-
-function login($username, $password, $conn) {
-    global $database;
-    // Hash the provided password
-    $hashed_password = md5($password);
-    // Query to fetch user details based on username and hashed password
-    $sql = "SELECT * FROM users WHERE username='$username' AND password='$hashed_password'";
-    $result = $conn->query($sql);
-    
-    if ($result->num_rows > 0) {
-        // Account found, return account details
-        return $result->fetch_assoc();
-    } else {
-        // Account not found
-        return null;
-    }
-}
-
-// Check if the form is submitted
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $_POST["username"];
-    $password = $_POST["password"];
-    $user = login($username, $password, $conn);
-    if ($user) {
-        // Login successful, redirect to index.html
-        header("Location: index.html");
-        exit();
-    }
-    // No redirect if login failed
-}
-?>
-
+include '../connection/connection.php';?>
+<?php
+include '../html/login_check.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
