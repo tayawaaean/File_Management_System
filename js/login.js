@@ -39,4 +39,3 @@ forgotPass.addEventListener('click',function(){
     front.style.transform = "rotateY(180deg)"
     side.style.transform = "rotateY(0deg)"
 })
-

@@ -3,7 +3,7 @@
     gap: 5px;
     margin: 14px;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: auto;
+    grid-template-rows: auto 1fr auto;
     grid-template-areas: 
         "header header header"
         "first-side second-side third-side";
@@ -11,11 +11,13 @@
 body{
     background-color: rgb(212, 212, 212)
 }
-.header {
-    grid-area: header;
+
+nav{
+    grid-area: nav;
 }
-
-
+.dashboard{
+    grid-area: dashboard;
+}
 .first-side {
     padding: 3%;
     grid-area: first-side;
@@ -51,6 +53,7 @@ input[type='text']{
 }
 .user-label{
     opacity: .7;
+    display: flex;
 }
 .content-info{
     display: flex;
@@ -74,42 +77,81 @@ input[type='text']{
     width: 28px; /* Adjust as needed */
     height: auto;
 }
+.textheader{
+    font-weight: bold;
+}
+.cancel-btn i{
+    text-decoration: none;
+}
+.buttons{
+    display: flex;
+
+}
+
 .cancel-btn{
     display: none;
-    text-decoration: none;
-    color: black;
-    border: 1px solid black;
-    padding: .5%;
-    background-color: rgb(172, 149, 167);
-    border-radius: 15%;
-    margin-left: 65%;
 }
 .save-btn{
     display: none;
-    background-color: rgb(128, 218, 125);
-    text-decoration: none;
-    color: black;
-    border: 1px solid black;
-    padding: .5%;
-    border-radius: 15%;
+}
+.header {
+    grid-area: header;
+    width: auto;
+    height: auto;
+}
+.image-background-profile{    
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+.white-bg {
+    background-color: white ;
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+.white-bg span{
+    margin-left: 3%;
+}
+.white-bg .userName{
+    font-weight: bold;
+    font-size: 18px;
+}
+.image-user img{
+    position: absolute;
+    width: 10%;
+    height: auto;
+    margin-left: 2%;
+    margin-top: -7%;
+    border: 5px solid rgb(46, 66, 166);
+    padding: .3%;
+    background-color: white;
+    border-radius: 50%;
 }
 
+
 @media screen and (max-width: 768px) {
-    body {
-        overflow: hidden;
+    .image-user img{
+       width: 25%;
+    }
+    .white-bg span{
+        margin-bottom: -2%;
     }
 
+@media  screen and (max-width: 768px) {
     .container {
         display: grid;
         gap: 5px;
-        margin: 14px auto; /* Center the container horizontally */
+        margin: 14px;
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: auto;
         grid-template-areas: 
-            "header header header"
-            "first-side first-side first-side" 
-            "second-side second-side second-side" 
-            "third-side third-side third-side";
+            "header"
+            "first-side" 
+            "second-side" 
+            "third-side";
     }
 }
-
+}
