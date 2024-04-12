@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/user_css.css">
+  
     <title>Personal Information</title>
 </head>
 <body>
@@ -37,6 +38,12 @@
                     <i class="material-symbols-outlined">person</i>
                     <span class="link-name">Users</span>
                 </a></li>
+                <li>
+                    <a href="user.html">
+                      <i class="material-symbols-outlined">person</i>
+                      <span class="link-name">Employees</span>
+                    </a>
+                  </li>
             </ul>
             
             <ul class="logout-mode">
@@ -103,7 +110,8 @@
                     <div class="card text-center">
                         <div class="card-body">
                             <h5 class="card-title">Pending Requests</h5>
-                            <p class="card-text">Number of pending requests: 2</p>
+                            <box-icon type='solid' name='notification'></box-icon>
+                            <p class="card-text"> Total requests: 2</p>
                             <!-- Button to trigger modal -->
                             <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#pendingRequestsModal">
                                 View All Pending Requests
@@ -114,7 +122,7 @@
             </div>
         
             <!-- User table -->
-            <div class="table-responsive">
+            <div class="table-responsive scrollable-table" style="max-height: 400px; overflow-y: auto;">
                 <table class="table" id="userTable">
                     <thead class="thead-light">
                         <tr>
@@ -255,10 +263,10 @@
         
         </div>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+        
+</body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
         <script src="/js/user_js.js"></script>
-</body>
-
 </html>
