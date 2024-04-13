@@ -360,7 +360,7 @@ hr {
 }
 
 .dash-content .boxes > * {
-    flex: 0 0 calc(33.33% - 20px); /* Adjust margin as needed */
+    flex: 0 0 calc(50% - 20px); /* Adjust margin as needed */
     margin: 10px; /* Set margin between items */
 }
 
