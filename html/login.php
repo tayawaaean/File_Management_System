@@ -24,7 +24,7 @@ include '../html/login_check.php';?>
         <div class="sign-in">
             <!-- Display message if user is not registered -->
             <?php if ($_SERVER["REQUEST_METHOD"] == "POST" && !$user): ?>
-                <p style="color: red;">Username or password incorrect. Please check your credentials or <a href="register.php">register here</a>.</p>
+                <p style="color: red;">Username or password incorrect. Please check your credentials.</p>
             <?php endif; ?>
             <form action="" class="sign-in-form" method="post">
                 <div class="inputBox inputBoxFront">
