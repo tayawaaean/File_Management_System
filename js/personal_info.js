@@ -1,3 +1,4 @@
+
 document.addEventListener('DOMContentLoaded', function() {
     function addCancelFunctionality(editBtnId, cancelBtnId, saveBtnId, fields) {
         var editBtn = document.getElementById(editBtnId);
@@ -75,4 +76,28 @@ document.addEventListener('DOMContentLoaded', function() {
             { name: 'current-location', element: document.getElementById('current-location') }
         ]
     );
+});
+
+document.addEventListener('DOMContentLoaded', function(){
+    const userName = document.getElementById('userName');
+    const userNameInput = document.getElementById('name');
+
+    userName.textContent = userNameInput.value;
+
+    userNameInput.addEventListener('input', function(){
+        userName.textContent = userNameInput.value;
+    });
+
+});
+
+document.addEventListener('DOMContentLoaded', function(){
+    const workTitle = document.getElementById('work-title');
+    const workTitleInput = document.getElementById('jobtitle');
+    
+    const workValue = workTitleInput.value;
+    
+    workTitle.textContent = workValue;
+    workTitleInput.addEventListener('input', function(){
+        workTitle.textContent = workTitleInput.value;
+    });
 });

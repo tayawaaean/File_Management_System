@@ -1,0 +1,77 @@
+body{
+    margin: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+}
+
+
+
+/* ==========================Navbar */
+
+.nav_bar {
+    display: flex;
+    align-items: center;
+}
+
+.inbox-icon {
+    margin-left: 25px;
+    font-size: 30px; 
+}
+
+.inbox-text {
+    margin-left: 10px; 
+    font-size: 30px;
+}
+
+/* ============================ inbox frame */
+.inbox_frame {
+    display: flex; 
+    height: calc(100vh - 40px); 
+    width: 100%; 
+    overflow: hidden; 
+    
+}
+
+.inbox_contents {
+    flex: 0 0 35%; 
+    background-color: #f0f0f0; 
+    border-right: 3px solid #757575;
+}
+
+.message {
+    cursor: pointer; 
+    margin-bottom: 10px; 
+    border-bottom: 1px solid #a3a3a3;
+    padding: 12px;
+}
+
+.inbox_message_name{
+    font-size: 25px;
+    margin: 0px 0px 10px 0px;
+}
+
+.inbox_message_title{
+    font-size: 20px;
+    margin: 0px 0px 0px 0px;
+}
+
+.inbox_message_preview{
+    color: rgb(107, 107, 107);
+    margin: 0px 0px 0px 0px;
+}
+
+/* =========================== Receive Frame */
+.receive_frame {
+    flex: 0 0 65%; 
+    background-color: #e0e0e0; 
+    padding: 20px; 
+}
+
+.message-content {
+    display: none; 
+}
