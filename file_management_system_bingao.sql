@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2024 at 04:32 AM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.2.0
+-- Generation Time: Apr 14, 2024 at 04:30 PM
+-- Server version: 10.4.28-MariaDB
+-- PHP Version: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -54,24 +54,16 @@ CREATE TABLE `users` (
   `job_title` varchar(50) NOT NULL,
   `department` varchar(128) NOT NULL,
   `company` varchar(128) NOT NULL,
-  `current_location` text NOT NULL,
-  `status` varchar(50) NOT NULL
+  `current_location` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `username`, `password`, `phone`, `mobile`, `website`, `address`, `job_title`, `department`, `company`, `current_location`, `status`) VALUES
-(4, 'Aean Gabrielle D. Tayawa', 'tayawaaean@gmail.com', 'tayawaaean', '827ccb0eea8a706c4c34a16891f84e7b', '', '', '', '', '', '', '', '', ''),
-(5, 'Kimberly Mae B. Reodique', 'kimberlyreodique@gmail.com', 'kimberly', '827ccb0eea8a706c4c34a16891f84e7b', '', '', '', '', '', '', '', '', ''),
-(6, 'Ismael', 'ismaelsenica@gmail.com', 'venciapps3321', '1d47de304fd2e86b549b14db5605c875', '', '', '', '', '', '', '', '', ''),
-(7, 'Ismael', 'ismaelsenica@gmail.com', '20-051127', '1d47de304fd2e86b549b14db5605c875', '', '', '', '', '', '', '', '', ''),
-(8, 'Lanz', 'Lanzbalbas123@gmail.com', 'lanzbagtit', 'e981b7e338f374ae44f58a20ddda44a8', '', '', '', '', '', '', '', '', ''),
-(9, 'lanz', 'Lanzbalbas123@gmail.com', '20-051127', '202cb962ac59075b964b07152d234b70', '', '', '', '', '', '', '', '', ''),
-(10, 'dale', 'dale@gmail.com', '20-051127', '63a017d3ac56e09d80c939eda9bdbc88', '', '', '', '', '', '', '', '', ''),
-(11, 'selwyne', 'selwyne@gmail.com', 'sel', '202cb962ac59075b964b07152d234b70', '', '', '', '', '', '', '', '', ''),
-(12, 'selwyne', 'selwyne@gmail.com', 'sel', '202cb962ac59075b964b07152d234b70', '', '', '', '', '', '', '', '', '');
+INSERT INTO `users` (`id`, `name`, `email`, `username`, `password`, `phone`, `mobile`, `website`, `address`, `job_title`, `department`, `company`, `current_location`) VALUES
+(13, 'Aean Gabrielle D. Tayawa', 'tayawaaean@gmail.com', 'tayawaaean', '202cb962ac59075b964b07152d234b70', '', '', '', '', 'Teacher', '', '', ''),
+(14, 'Aean Gabrielle D. Tayawa', 'admin@gmail.com', 'admin', '21232f297a57a5a743894a0e4a801fc3', '', '', '', '', 'Admin', '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -97,13 +89,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `pending_requests`
 --
 ALTER TABLE `pending_requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

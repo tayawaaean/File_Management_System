@@ -17,7 +17,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Close statement
     $stmt->close();
 
-    // Redirect to a confirmation page or display a message
-    echo "Your registration request is pending approval.";
+    // Redirect to login.php after displaying the confirmation message
+    header("Location: login.php");
+    exit; // Make sure to exit after redirection to prevent further execution
 }
 ?>
