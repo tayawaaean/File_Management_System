@@ -1,4 +1,5 @@
-
+<?php
+include '../connection/verifier.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
-    <link rel="stylesheet" href="../css/dashboard.css">
+    <link rel="stylesheet" href="../css/employee_dashboard.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
@@ -18,7 +19,7 @@
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-                <img src="/img/BNHS Logo.png" alt="">
+                <img src="../img/BNHS Logo.png" alt="">
             </div>
 
             <span class="logo_name">Bingao NHS</span>
@@ -26,22 +27,26 @@
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="index.html">
+                <li><a href="employee_index.php">
                     <i class="uil uil-estate"></i>
                     <span class="link-name">Dashboard</span>
                 </a></li>
                 <li><a href="#">
-                  <i class='bx bx-folder-open'></i>
-                    <span class="link-name">Files</span>
+                    <i class='bx bx-folder-open'></i>
+                    <span class="link-name">My Files</span>
                 </a></li>
-                <li><a href="#">
+                <li><a href="personal_info.php">
                     <i class="material-symbols-outlined">person</i>
-                    <span class="link-name">Employees</span>
+                    <span class="link-name">Personal Info</span>
+                </a></li>
+                <li><a href="../inbox/inbox.html">
+                    <i class="material-symbols-outlined">inbox</i>
+                    <span class="link-name">Inbox</span>
                 </a></li>
             </ul>
             
             <ul class="logout-mode">
-                <li><a href="#">
+                <li><a href="logout.php">
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Logout</span>
                 </a></li>
@@ -81,24 +86,31 @@
 
                 <div class="boxes">
                     <div class="box box1">
-                        <i class='bx bxs-user'></i>
+                        <i class='bx bxs-inbox'></i>
                         <span class="text">
                             <span class="number">12</span>
-                            <span class="text">Total Users</span>
+                            <span class="text">Inbox</span>
                         </span>
                     </div>
                     <div class="box box2">
-                        <i2 class="material-symbols-outlined">folder_open</i2>
+                        <i2 class="material-symbols-outlined">description</i2>
                         <span class="text">
                             <span class="number">1,028</span>
                             <span class="text">Total Files</span>
                         </span>
                     </div>
                     <div class="box box3">
-                        <i class="material-symbols-outlined">app_registration</i>
+                        <i class="material-symbols-outlined">folder_open</i>
                         <span class="text">
                             <span class="number">4</span>
-                            <span class="text">Pending Register</span>
+                            <span class="text">Total Folders</span>
+                        </span>
+                    </div>
+                    <div class="box box4">
+                        <i2 class="material-symbols-outlined">unarchive</i2>
+                        <span class="text">
+                            <span class="number">1,028</span>
+                            <span class="text">Sent Files</span>
                         </span>
                     </div>
                 </div>
@@ -115,7 +127,7 @@
                         </div>
                         <div class="buttons">
                             <button id="dropdown1" class="dropdown-button">
-                                <i class='bx bx-user' ></i>
+                                <i class='bx bx-user'></i>
                             </button>                            
                             <ul class="menu">
                                 <li>Aean Gabrielle Tayawa</li>
@@ -310,6 +322,6 @@
         </div>
     </section>
 
-    <script src="../js/dashboard.js"></script>
+    <script src="../js/employee_dashboard.js"></script>
 </body>
 </html>

@@ -1,4 +1,6 @@
 
+<?php
+include '../connection/verifier.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +34,7 @@
         <div class="menu-items">
             <ul class="nav-links">
               <li>
-                <a href="index.html">
+                <a href="index.php">
                   <i class="uil uil-estate"></i>
                   <span class="link-name">Dashboard</span>
                 </a>
@@ -44,7 +46,7 @@
                 </a>
               </li>
               <li>
-                <a href="user.html">
+                <a href="user.php">
                   <i class="material-symbols-outlined">person</i>
                   <span class="link-name">Employees</span>
                 </a>
@@ -53,7 +55,7 @@
     
             <ul class="logout-mode">
               <li>
-                <a href="login.php">
+                <a href="logout.php">
                   <i class="uil uil-signout"></i>
                   <span class="link-name">Logout</span>
                 </a>

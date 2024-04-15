@@ -1,4 +1,5 @@
 <?php
+session_start(); // Start the session
 include '../connection/connection.php';
 
 function login($username, $password, $conn) {
@@ -11,20 +12,33 @@ function login($username, $password, $conn) {
     if ($result->num_rows > 0) {
         // Account found, fetch user details
         $user = $result->fetch_assoc();
-        // Check user type
-        $user_type = $user['user_type'];
-        if (strtolower($user_type) == 'admin') {
+        // Set session variables
+        $_SESSION['username'] = $user['username'];
+        $_SESSION['user_type'] = $user['user_type'];
+        if (strtolower($user['user_type']) == 'admin') {
             // Admin user, redirect to index.html
-            header("Location: index.html");
+            header("Location: index.php");
             exit();
         } else {
             // Non-admin user, redirect to employee_index.html
-            header("Location: employee_index.html");
+            header("Location: employee_index.php");
             exit();
         }
     } else {
         // Account not found
-        return null;
+        return false;
+    }
+}
+
+// Check if the user is already logged in
+if (isset($_SESSION['username']) && isset($_SESSION['user_type'])) {
+    // Redirect to appropriate page based on user type
+    if (strtolower($_SESSION['user_type']) == 'admin') {
+        header("Location: index.php");
+        exit();
+    } else {
+        header("Location: employee_index.php");
+        exit();
     }
 }
 
@@ -35,7 +49,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $user = login($username, $password, $conn);
     if (!$user) {
         // Login failed, redirect to login page with an error message
-        header("Location: login.html?error=1");
+        header("Location: login.php?error=1");
         exit();
     }
 }

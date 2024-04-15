@@ -1,3 +1,5 @@
+<?php
+include '../connection/verifier.php';?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -23,7 +25,7 @@
 
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="employee_index.html">
+                <li><a href="employee_index.php">
                     <i class="uil uil-estate"></i>
                     <span class="link-name">Dashboard</span>
                 </a></li>
@@ -31,7 +33,7 @@
                     <i class='bx bx-folder-open'></i>
                     <span class="link-name">My Files</span>
                 </a></li>
-                <li><a href="personal_info.html">
+                <li><a href="personal_info.php">
                     <i class="material-symbols-outlined">person</i>
                     <span class="link-name">Personal Info</span>
                 </a></li>
@@ -42,7 +44,7 @@
             </ul>
             
             <ul class="logout-mode">
-                <li><a href="#">
+                <li><a href="logout.php">
                     <i class="uil uil-signout"></i>
                     <span class="link-name">Logout</span>
                 </a></li>
