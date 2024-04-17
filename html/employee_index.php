@@ -1,5 +1,6 @@
 <?php
-include '../connection/verifier.php';?>
+include '../connection/verifier.php';
+include '../connection/connection.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +13,10 @@ include '../connection/verifier.php';?>
     <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
 
     <title>Admin Dashboard Panel</title> 
 </head>
@@ -129,40 +134,45 @@ include '../connection/verifier.php';?>
                             <button id="dropdown1" class="dropdown-button">
                                 <i class='bx bx-user'></i>
                             </button>                            
-                            <ul class="menu">
-                                <li>Aean Gabrielle Tayawa</li>
-                                <li>Dexter John Perdido</li>
-                                <li>Kenric Catiwa</li>
+                            <ul class="menu" id="Author">
+                                <li data-author="None">None</li>
+                                <?php 
+                                    $result = $conn->query("SELECT DISTINCT Author FROM activity_log");
+                                    while ($row = $result->fetch_assoc()): 
+                                ?>
+                                <li data-author="<?php echo $row['Author']?>"><?php echo $row['Author']?></li>
+                                <?php endwhile?>
                             </ul>
                             <button id="dropdown2" class="dropdown-button">
                                 <i class='bx bxs-calendar' ></i>
                             </button>                            
                             <ul class="menu">
-                                <li>January</li>
-                                <li>February</li>
-                                <li>March</li>
-                                <li>April</li>
-                                <li>May</li>
-                                <li>June</li>
-                                <li>July</li>
-                                <li>August</li>
-                                <li>September</li>
-                                <li>October</li>
-                                <li>November</li>
-                                <li>December</li>
+                                <li data-month="None">None</li>
+                                <li data-month="January">January</li>
+                                <li data-month="February">February</li>
+                                <li data-month="March">March</li>
+                                <li data-month="April">April</li>
+                                <li data-month="May">May</li>
+                                <li data-month="June">June</li>
+                                <li data-month="July">July</li>
+                                <li data-month="August">August</li>
+                                <li data-month="September">September</li>
+                                <li data-month="October">October</li>
+                                <li data-month="November">November</li>
+                                <li data-month="December">December</li>
                             </ul>
                         </div>
                         
                         <div class="bottom-search">
                             <div class="search">
                                 <i class="uil uil-search"></i>
-                                <input type="text" placeholder="Search...">
+                                <input type="text" id="custom-search" placeholder="Search...">
                             </div>
                         </div>
                     </div>
                     <div class="table-container">
                         <div class="dashboard-table-wrapper">
-                            <table class="table">
+                            <table class="table" id="ActivityLog">
                                 <thead>
                                     <tr>
                                         <th>Author</th>
@@ -173,146 +183,31 @@ include '../connection/verifier.php';?>
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    <?php 
+                                    $result = $conn->query("SELECT * FROM activity_log");
+                                    while ($row = $result->fetch_assoc()): 
+                                        $dateTime = $row['DateTime'];
+                                        $date = date("F j, Y", strtotime($dateTime));
+                                        $time = date("h:i A", strtotime($dateTime));
+                                    ?>
                                     <tr>
-                                        <td>Aean Gabrielle Tayawa</td>
-                                        <td>May 30,2022</td>
-                                        <td>4:38 pm</td>
-                                        <td>New User Approved</td>
+                                        <td><?php echo $row['Author']?></td>
+                                        <td><?php echo $date?></td>
+                                        <td><?php echo $time?></td>
+                                        <td><?php echo $row['Action']?></td>
                                         <td>
                                             <div class="description">
-                                                Admin Aean Gabrielle Tayawa accepted Dexter John Perdido to be a new user.
-                                            </div>
-                                            <div class="full-description">
-                                                Admin Aean Gabrielle Tayawa accepted Dexter John Perdido to be a new user.
+                                                <?php if($row['Action'] === "New User Approved") { ?>
+                                                <?php echo $row['job_title'],' ',$row['Author'],' ', 'accepted' ,' ',$row['Description'],' ','to be a new user.'?>
+                                                <?php } else if ($row['Action'] === "Document Deleted") {?>
+                                                <?php echo $row['job_title'],' ',$row['Author'],' ','deleted the document',' ',$row['Description'],'.'?>
+                                                <?php } else if ($row['Action'] === "Document Upload") {?>
+                                                <?php echo $row['job_title'],' ',$row['Author'],' ','uploaded the document',' ',$row['Description'],'.'?>
+                                                <?php }?>
                                             </div>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td>Dexter John Perdido</td>
-                                        <td>June 08,2022</td>
-                                        <td>5:12 pm</td>
-                                        <td>Document Deleted</td>
-                                        <td>
-                                            <div class="description">
-                                                User Dexter John Perdido deleted the document MMSU Waiver.docx
-                                            </div>
-                                            <div class="full-description">
-                                                User Dexter John Perdido deleted the document MMSU Waiver.docx
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Kenric Catiwa</td>
-                                        <td>June 08,2022</td>
-                                        <td>5:12 pm</td>
-                                        <td>Document Upload</td>
-                                        <td>
-                                            <div class="description">
-                                                User Kenric Catiwa uploaded the document Ma'am Abbie Assignment.pdf
-                                            </div>
-                                            <div class="full-description">
-                                                User Kenric Catiwa uploaded the document MMSU Waiver.pdf
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dexter John Perdido</td>
-                                        <td>June 08,2022</td>
-                                        <td>5:12 pm</td>
-                                        <td>Document Deleted</td>
-                                        <td>
-                                            <div class="description">
-                                                User Dexter John Perdido deleted the document MMSU Waiver.docx
-                                            </div>
-                                            <div class="full-description">
-                                                User Dexter John Perdido deleted the document MMSU Waiver.docx
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dexter John Perdido</td>
-                                        <td>June 08,2022</td>
-                                        <td>5:12 pm</td>
-                                        <td>Document Deleted</td>
-                                        <td>
-                                            <div class="description">
-                                                User Dexter John Perdido deleted the document MMSU Waiver.docx
-                                            </div>
-                                            <div class="full-description">
-                                                User Dexter John Perdido deleted the document MMSU Waiver.docx
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dexter John Perdido</td>
-                                        <td>June 08,2022</td>
-                                        <td>5:12 pm</td>
-                                        <td>Document Deleted</td>
-                                        <td>
-                                            <div class="description">
-                                                User Dexter John Perdido deleted the document MMSU Waiver.docx
-                                            </div>
-                                            <div class="full-description">
-                                                User Dexter John Perdido deleted the document MMSU Waiver.docx
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dexter John Perdido</td>
-                                        <td>June 08,2022</td>
-                                        <td>5:12 pm</td>
-                                        <td>Document Deleted</td>
-                                        <td>
-                                            <div class="description">
-                                                User Dexter John Perdido deleted the document MMSU Waiver.docx
-                                            </div>
-                                            <div class="full-description">
-                                                User Dexter John Perdido deleted the document MMSU Waiver.docx
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dexter John Perdido</td>
-                                        <td>June 08,2022</td>
-                                        <td>5:12 pm</td>
-                                        <td>Document Deleted</td>
-                                        <td>
-                                            <div class="description">
-                                                User Dexter John Perdido deleted the document MMSU Waiver.docx
-                                            </div>
-                                            <div class="full-description">
-                                                User Dexter John Perdido deleted the document MMSU Waiver.docx
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dexter John Perdido</td>
-                                        <td>June 08,2022</td>
-                                        <td>5:12 pm</td>
-                                        <td>Document Deleted</td>
-                                        <td>
-                                            <div class="description">
-                                                User Dexter John Perdido deleted the document MMSU Waiver.docx
-                                            </div>
-                                            <div class="full-description">
-                                                User Dexter John Perdido deleted the document MMSU Waiver.docx
-                                            </div>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Dexter John Perdido</td>
-                                        <td>June 08,2022</td>
-                                        <td>5:12 pm</td>
-                                        <td>Document Deleted</td>
-                                        <td>
-                                            <div class="description">
-                                                User Dexter John Perdido deleted the document MMSU Waiver.docx
-                                            </div>
-                                            <div class="full-description">
-                                                User Dexter John Perdido deleted the document MMSU Waiver.docx
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    <?php endwhile; ?>
                                 </tbody>
                             </table>
                         </div>
@@ -321,7 +216,6 @@ include '../connection/verifier.php';?>
             </div>
         </div>
     </section>
-
     <script src="../js/employee_dashboard.js"></script>
 </body>
 </html>
