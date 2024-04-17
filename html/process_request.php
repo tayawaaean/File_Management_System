@@ -26,7 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Create a folder with the user's name in ../Employee Files directory
             $folderName = $name; // Use the original name without modification
-            $folderPath = "../Employee Files/$folderName";
+            $folderPath = "C:\\Users\\user\\Desktop\\File Management System\\Employee Files\\$folderName";
             if (!file_exists($folderPath)) {
                 mkdir($folderPath, 0777, true);
                 echo json_encode(['status' => 'success', 'message' => 'User registration approved successfully']);
