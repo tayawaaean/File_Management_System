@@ -24,15 +24,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $stmt->execute();
             $stmt->close();
 
-            $conn->query("DELETE FROM pending_requests WHERE id = $requestId");
+            // Create a folder with the user's name in ../Employee Files directory
+            $folderName = $name; // Use the original name without modification
+            $folderPath = "../Employee Files/$folderName";
+            if (!file_exists($folderPath)) {
+                mkdir($folderPath, 0777, true);
+                echo json_encode(['status' => 'success', 'message' => 'User registration approved successfully']);
+            } else {
+                echo json_encode(['status' => 'error', 'message' => 'Folder already exists for this user']);
+            }
 
-            echo json_encode(['status' => 'success', 'message' => 'User registration approved successfully']);
+            // Delete the request from pending_requests table
+            $conn->query("DELETE FROM pending_requests WHERE id = $requestId");
         } else {
             echo json_encode(['status' => 'error', 'message' => 'User not found in pending requests']);
         }
     } elseif ($action === 'deny') {
+        // Delete the request from pending_requests table
         $conn->query("DELETE FROM pending_requests WHERE id = $requestId");
-
         echo json_encode(['status' => 'success', 'message' => 'User registration denied']);
     } else {
         echo json_encode(['status' => 'error', 'message' => 'Invalid action']);

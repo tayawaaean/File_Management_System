@@ -1,26 +1,22 @@
 
 <?php
 include '../connection/verifier.php';?>
+<?php include '../connection/connection.php';?>
+<?php include 'manage_employee.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    
     <link rel="stylesheet" href="../css/style-personal-info.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/user_css.css">
-
-    
-  
     <title>Personal Information</title>
 </head>
-<?php include '../connection/connection.php';?>
-<?php include 'manage_employee.php';?>
+
 <body>
     <nav>
         <div class="logo-name">
