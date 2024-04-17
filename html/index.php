@@ -31,10 +31,12 @@ include '../connection/verifier.php';?>
                     <i class="uil uil-estate"></i>
                     <span class="link-name">Dashboard</span>
                 </a></li>
-                <li><a href="#">
-                  <i class='bx bx-folder-open'></i>
-                    <span class="link-name">Files</span>
-                </a></li>
+                <li>
+                <a href="#">
+                  <i class="material-symbols-outlined">save</i>
+                  <span class="link-name">All Files</span>
+                </a>
+              </li>
                 <li><a href="user.php">
                     <i class="material-symbols-outlined">person</i>
                     <span class="link-name">Employees</span>
