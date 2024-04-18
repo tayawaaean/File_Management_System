@@ -173,7 +173,7 @@ include '../connection/connection.php';?>
                         <div class="bottom-search">
                             <div class="search">
                                 <i class="uil uil-search"></i>
-                                <input type="text" placeholder="Search...">
+                                <input type="text" id="custom-search" placeholder="Search...">
                             </div>
                         </div>
                     </div>

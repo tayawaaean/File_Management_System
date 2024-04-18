@@ -653,16 +653,23 @@ hr {
 .dataTables_wrapper .dataTables_paginate .paginate_button.page-item.active .page-link {
     color: red !important;
 }
+.dataTables_wrapper .dataTables_paginate .paginate_button.page-item .page-link {
+    color: black !important;
+}
 /* Remove underline from active page link */
 .dataTables_wrapper .dataTables_paginate .paginate_button.page-item .page-link {
     text-decoration: none;
 }
 .dataTables_wrapper .dataTables_paginate .paginate_button.page-item.previous .page-link {
     text-decoration: none;
+    color: black; /* Change to the desired color */
 }
+
 .dataTables_wrapper .dataTables_paginate .paginate_button.page-item.next .page-link {
     text-decoration: none;
+    color: blue; /* Change to the desired color */
 }
+
 
 @media (max-width: 780px) {
     .dash-content .boxes {
