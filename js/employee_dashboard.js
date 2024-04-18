@@ -128,24 +128,32 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Activity Log Script
 $(document).ready(function() {
-    var table = $('#ActivityLog').DataTable({
-        responsive: true,
-        dom: '<li<"entries-info">>frt<"bottom-search"f>t<"bottom"ip>',  
-        "language": {
-            "info": "Showing _START_ to _END_ of _TOTAL_ entries"
-        },
-        "columnDefs": [{
-            "targets": 4,
-            "orderable": false
-        }, {
-            "targets": 1,
-            "type": "date-eu", // Use "date-eu" type for the date column
-            "render": function(data, type, row) {
-                // Parse the date string to a Date object for proper sorting
-                return type === 'sort' ? new Date(data) : data;
-            }
-        }],
-    });
+        var table = $('#ActivityLog').DataTable({
+            responsive: true,
+            dom: '<li<"entries-info">>frt<"bottom-search"f>t<"bottom"ip>',  
+            "language": {
+                "info": "Showing _START_ to _END_ of _TOTAL_ entries"
+            },
+            "order": [[1, 'desc'], [2, 'desc']], // Sort by Date column (index 1) and Time column (index 2) in descending order
+            "columnDefs": [{
+                "targets": 4,
+                "orderable": false
+            }, {
+                "targets": 1,
+                "type": "date-eu", // Use "date-eu" type for the date column
+                "render": function(data, type, row) {
+                    // Parse the date string to a Date object for proper sorting
+                    return type === 'sort' ? new Date(data) : data;
+                }
+            }, {
+                "targets": 2,
+                "type": "time", // Use "time" type for the time column
+                "render": function(data, type, row) {
+                    // Parse the time string to a time object for proper sorting
+                    return type === 'sort' ? moment(data, 'h:mm A').toDate() : data;
+                }
+            }],
+        });
     var currentAuthor = '';
     var currentMonth = '';
     $('#Author li').click(function() {

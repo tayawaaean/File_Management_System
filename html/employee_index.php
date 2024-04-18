@@ -17,6 +17,8 @@ include '../connection/connection.php';?>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
 
     <title>Admin Dashboard Panel</title> 
 </head>
@@ -93,28 +95,48 @@ include '../connection/connection.php';?>
                     <div class="box box1">
                         <i class='bx bxs-inbox'></i>
                         <span class="text">
-                            <span class="number">12</span>
+                            <?php 
+                                $result = $conn->query("SELECT COUNT(*) AS total FROM inbox;");
+                                $row = $result->fetch_assoc();
+                                $totalInbox = $row['total'];
+                            ?>
+                            <span class="number"><?php echo $totalInbox?></span>
                             <span class="text">Inbox</span>
                         </span>
                     </div>
                     <div class="box box2">
                         <i2 class="material-symbols-outlined">description</i2>
                         <span class="text">
-                            <span class="number">1,028</span>
+                            <?php 
+                                $result = $conn->query("SELECT COUNT(*) AS total FROM files;");
+                                $row = $result->fetch_assoc();
+                                $totalFiles = $row['total'];
+                            ?>
+                            <span class="number"><?php echo $totalFiles?></span>
                             <span class="text">Total Files</span>
                         </span>
                     </div>
                     <div class="box box3">
                         <i class="material-symbols-outlined">folder_open</i>
                         <span class="text">
-                            <span class="number">4</span>
+                            <?php 
+                                $result = $conn->query("SELECT COUNT(*) AS total FROM folders;");
+                                $row = $result->fetch_assoc();
+                                $totalFolders = $row['total'];
+                            ?>
+                            <span class="number"><?php echo $totalFolders?></span>
                             <span class="text">Total Folders</span>
                         </span>
                     </div>
                     <div class="box box4">
                         <i2 class="material-symbols-outlined">unarchive</i2>
                         <span class="text">
-                            <span class="number">1,028</span>
+                            <?php 
+                                $result = $conn->query("SELECT COUNT(*) AS total FROM sent_files;");
+                                $row = $result->fetch_assoc();
+                                $totalSentFiles = $row['total'];
+                            ?>
+                            <span class="number"><?php echo $totalSentFiles?></span>
                             <span class="text">Sent Files</span>
                         </span>
                     </div>
@@ -192,7 +214,7 @@ include '../connection/connection.php';?>
                                     ?>
                                     <tr>
                                         <td><?php echo $row['Author']?></td>
-                                        <td><?php echo $date?></td>
+                                        <td><?php echo date('F j, Y', strtotime($row['DateTime'])); ?></td>
                                         <td><?php echo $time?></td>
                                         <td><?php echo $row['Action']?></td>
                                         <td>
