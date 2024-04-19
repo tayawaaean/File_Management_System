@@ -125,3 +125,76 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 });
+
+// Activity Log Script
+$(document).ready(function() {
+        var table = $('#ActivityLog').DataTable({
+            responsive: true,
+            dom: '<li<"entries-info">>frt<"bottom-search"f>t<"bottom"ip>',  
+            "language": {
+                "info": "Showing _START_ to _END_ of _TOTAL_ entries"
+            },
+            "order": [[1, 'desc'], [2, 'desc']], // Sort by Date column (index 1) and Time column (index 2) in descending order
+            "columnDefs": [{
+                "targets": 4,
+                "orderable": false
+            }, {
+                "targets": 1,
+                "type": "date-eu", // Use "date-eu" type for the date column
+                "render": function(data, type, row) {
+                    // Parse the date string to a Date object for proper sorting
+                    return type === 'sort' ? new Date(data) : data;
+                }
+            }, {
+                "targets": 2,
+                "type": "time", // Use "time" type for the time column
+                "render": function(data, type, row) {
+                    // Parse the time string to a time object for proper sorting
+                    return type === 'sort' ? moment(data, 'h:mm A').toDate() : data;
+                }
+            }],
+        });
+    var currentAuthor = '';
+    var currentMonth = '';
+    $('#Author li').click(function() {
+        var selectedAuthor = $(this).data('author');
+
+        if (selectedAuthor === 'None') {
+            currentAuthor = '';
+        } else {
+            currentAuthor = selectedAuthor;
+        }
+
+        filterData();
+    });
+
+    $('.menu li').click(function() {
+        var selectedMonth = $(this).data('month');
+
+        if (selectedMonth === 'None') {
+            currentMonth = '';
+        } else {
+            currentMonth = selectedMonth;
+        }
+
+        filterData();
+    });
+
+    $('#ActivityLog th:eq(1)').click(function() {
+        var order = table.order()[0]; // Get the current order
+        var newOrder = order[1] === 'asc' ? 'asc' : 'desc'; // Toggle between asc and desc
+
+        table.order([1, newOrder]).draw(); // Apply the new order to the date column
+    });
+
+    function filterData() {
+        if (currentAuthor === '' && currentMonth === '') {
+            table.search('').columns().search('').draw();
+        } else {
+            table.columns(0).search(currentAuthor).columns(1).search(currentMonth).draw();
+        }
+    }
+    $('#custom-search').on('keyup', function() {
+        table.search(this.value).draw();
+    });
+});
