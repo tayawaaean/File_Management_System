@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 14, 2024 at 04:40 PM
+-- Generation Time: Apr 19, 2024 at 02:08 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -35,13 +35,6 @@ CREATE TABLE `pending_requests` (
   `password` varchar(250) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
---
--- Dumping data for table `pending_requests`
---
-
-INSERT INTO `pending_requests` (`id`, `name`, `email`, `username`, `password`) VALUES
-(10, 'Kimberly Mae B. Reodique', 'kimberlyreodique@gmail.com', 'kimberly', '202cb962ac59075b964b07152d234b70');
-
 -- --------------------------------------------------------
 
 --
@@ -70,8 +63,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `username`, `password`, `phone`, `mobile`, `website`, `address`, `job_title`, `department`, `company`, `current_location`, `user_type`) VALUES
-(13, 'Aean Gabrielle D. Tayawa', 'tayawaaean@gmail.com', 'tayawaaean', '202cb962ac59075b964b07152d234b70', '', '', '', '', 'Teacher', '', '', '', ''),
-(14, 'Aean Gabrielle D. Tayawa', 'admin@gmail.com', 'admin', '21232f297a57a5a743894a0e4a801fc3', '', '', '', '', 'Admin', '', '', '', '');
+(17, 'Aean Gabrielle D. Tayawa', 'tayawaaean@gmail.com', 'tayawaaean', '202cb962ac59075b964b07152d234b70', '', '', '', '', '', '', '', '', 'Admin');
 
 --
 -- Indexes for dumped tables
@@ -97,13 +89,13 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `pending_requests`
 --
 ALTER TABLE `pending_requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
