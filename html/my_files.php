@@ -40,12 +40,6 @@
                     </a>
                 </li>
                 <li>
-                    <a href="storage.html">
-                        <i class="material-symbols-outlined">save</i>
-                        <span class="link-name">My Storage</span>
-                    </a>
-                </li>
-                <li>
                     <a href="my_files.html">
                         <i class="material-symbols-outlined">folder</i>
                         <span class="link-name">My Files</span>
