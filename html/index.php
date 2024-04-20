@@ -205,7 +205,9 @@ include '../connection/connection.php';?>
                                         <td>
                                             <div class="description">
                                                 <?php if($row['Action'] === "New User Approved") { ?>
-                                                <?php echo $row['job_title'],' ',$row['Author'],' ', 'accepted' ,' ',$row['Description'],' ','to be a new user.'?>
+                                                <?php echo $row['job_title'],' ',$row['Author'],'', 'accepted' ,' ',$row['Description'],' ','to be a new user.'?>
+                                                <?php } else if ($row['Action'] === "New User Denied") {?>
+                                                <?php echo $row['job_title'],' ',$row['Author'],' ','denied',' ',$row['Description'],' ','to be a new user.'?>
                                                 <?php } else if ($row['Action'] === "Document Deleted") {?>
                                                 <?php echo $row['job_title'],' ',$row['Author'],' ','deleted the document',' ',$row['Description'],'.'?>
                                                 <?php } else if ($row['Action'] === "Document Upload") {?>
