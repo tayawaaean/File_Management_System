@@ -34,19 +34,19 @@
         <div class="menu-items">
             <ul class="nav-links">
                 <li>
-                    <a href="index.html">
+                    <a href="employee_index.php">
                         <i class="uil uil-estate"></i>
                         <span class="link-name">Dashboard</span>
                     </a>
                 </li>
                 <li>
-                    <a href="my_files.html">
+                    <a href="my_files.php">
                         <i class="material-symbols-outlined">folder</i>
                         <span class="link-name">My Files</span>
                     </a>
                 </li>
                 <li>
-                    <a href="/personal_info.html">
+                    <a href="personal_info.php">
                         <i class="material-symbols-outlined">person</i>
                         <span class="link-name">Users</span>
                     </a>
