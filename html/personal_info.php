@@ -29,7 +29,7 @@ include '../connection/verifier.php';?>
                     <i class="uil uil-estate"></i>
                     <span class="link-name">Dashboard</span>
                 </a></li>
-                <li><a href="#">
+                <li><a href="my_files.php">
                     <i class='bx bx-folder-open'></i>
                     <span class="link-name">My Files</span>
                 </a></li>
