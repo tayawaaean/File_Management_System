@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 19, 2024 at 06:03 PM
+-- Generation Time: Apr 21, 2024 at 10:27 AM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -44,18 +44,9 @@ INSERT INTO `activity_log` (`id`, `Author`, `job_title`, `DateTime`, `Action`, `
 (1, 'Aean Gabrielle Tayawa', 'Admin', '2024-04-17 00:38:17', 'New User Approved', 'Dexter John Perdido'),
 (2, 'Dexter John Perdido', 'User', '2024-04-17 18:38:17', 'Document Deleted', 'MMSU Waiver.docx'),
 (3, 'Kenric Catiwa', 'User', '2024-04-17 18:43:14', 'Document Upload', 'Ma\'am Abbie Assignment.pdf'),
-(4, 'Dexter John Perdido', 'User', '2024-04-09 00:43:14', 'Document Deleted', 'MMSU Waiver.docx'),
-(5, 'Dexter John Perdido', 'User', '2024-04-08 00:43:14', 'Document Deleted', 'MMSU Waiver1.docx'),
-(6, 'Dexter John Perdido', 'User', '2024-04-08 00:43:14', 'Document Deleted', 'MMSU Waiver2.docx'),
-(7, 'Dexter John Perdido', 'User', '2024-04-01 00:43:14', 'Document Deleted', 'MMSU Waiver.docx'),
-(8, 'Aean Gabrielle Tayawa', 'Admin', '2024-04-17 00:38:17', 'New User Approved', 'Kenric Catiwa'),
-(9, 'Kenric Catiwa', 'User', '2024-04-17 18:43:14', 'Document Upload', 'Ma\'am Dianna Assignment.pdf'),
-(10, 'Aean Gabrielle Tayawa', 'Admin', '2024-04-17 00:38:17', 'New User Approved', 'Dexter John Perdido'),
-(11, 'Aean Gabrielle Tayawa', 'Admin', '2024-04-17 00:38:17', 'New User Approved', 'Dexter John Perdido'),
-(12, 'Aean Gabrielle Tayawa', 'Admin', '2024-03-13 00:38:17', 'New User Approved', 'Dexter John Perdido'),
-(13, 'Dexter John Perdido', 'User', '2024-02-12 18:38:17', 'Document Deleted', 'MMSU Waiver.docx'),
-(14, 'Kenric Catiwa', 'User', '2023-12-06 18:43:14', 'Document Upload', 'Ma\'am Abbie Assignment.pdf'),
-(15, 'Aean Gabrielle Tayawa', 'Admin', '2023-10-17 00:38:17', 'New User Approved', 'Kenric Catiwa');
+(18, 'Aean Gabrielle D. Tayawa', 'Admin', '2024-04-20 23:14:07', 'New User Approved', 'Kimberly Mae B. Reodique'),
+(21, 'Aean Gabrielle D. Tayawa', 'Admin', '2024-04-20 23:31:29', 'New User Approved', 'Ryan Anthony Gabriel B. Adaya'),
+(22, 'Aean Gabrielle D. Tayawa', 'Admin', '2024-04-20 23:34:38', 'New User Denied', 'Ryan Anthony Gabriel B. Adaya');
 
 -- --------------------------------------------------------
 
@@ -64,7 +55,11 @@ INSERT INTO `activity_log` (`id`, `Author`, `job_title`, `DateTime`, `Action`, `
 --
 
 CREATE TABLE `files` (
-  `id` int(11) NOT NULL
+  `id` int(11) NOT NULL,
+  `file_name` text NOT NULL,
+  `date_time` datetime NOT NULL,
+  `file_size` varchar(128) NOT NULL,
+  `owner` varchar(128) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
@@ -140,7 +135,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `name`, `email`, `username`, `password`, `phone`, `mobile`, `website`, `address`, `job_title`, `department`, `company`, `current_location`, `user_type`) VALUES
 (17, 'Aean Gabrielle D. Tayawa', 'tayawaaean@gmail.com', 'tayawaaean', '202cb962ac59075b964b07152d234b70', '', '', '', '', '', '', '', '', 'Admin'),
-(27, 'Micheal Jay A. Pedronan', 'michealjay@gmail.com', 'mekel', '202cb962ac59075b964b07152d234b70', '', '', '', '', '', '', '', '', 'Employee');
+(27, 'Micheal Jay A. Pedronan', 'michealjay@gmail.com', 'mekel', '202cb962ac59075b964b07152d234b70', '', '', '', '', '', '', '', '', 'Employee'),
+(30, 'Kimberly Mae B. Reodique', 'kimberlyreodique@gmail.com', 'kimberly', '202cb962ac59075b964b07152d234b70', '', '', '', '', '', '', '', '', '');
 
 --
 -- Indexes for dumped tables
@@ -196,7 +192,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `activity_log`
 --
 ALTER TABLE `activity_log`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 
 --
 -- AUTO_INCREMENT for table `files`
@@ -220,7 +216,7 @@ ALTER TABLE `inbox`
 -- AUTO_INCREMENT for table `pending_requests`
 --
 ALTER TABLE `pending_requests`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `sent_files`
@@ -232,7 +228,7 @@ ALTER TABLE `sent_files`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

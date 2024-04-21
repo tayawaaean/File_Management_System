@@ -19,7 +19,7 @@
 
     <script src="../js/my_files.js"></script>
 
-    title>BNHS File Management System</title> 
+    <title>BNHS File Management System</title> 
 </head>
 <body>
     <nav>
@@ -84,7 +84,7 @@
         <div class="dash-content">
             <div class="overview">
                 <div class="title">
-                    <h2>Dashboard</h2>
+                    <h2>My Files</h2>
                 </div>
             </div>
 
@@ -161,7 +161,7 @@
                 </div>
             </div>
         </div>
-        <div class="separation-text" id="seperationText">Folder</div>
+        <div class="separation-text" id="seperationText">Folders</div>
         <div class="container">
             <div class="folder-container" id="folderGrid" ondrop="drop(event, 'folder')" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
                 <div class="folders">
