@@ -14,7 +14,8 @@ include '../connection/verifier.php';?>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/user_css.css">
-    <title>Personal Information</title>
+
+    <title>Admin Panel</title>
 </head>
 
 <body>
@@ -36,7 +37,7 @@ include '../connection/verifier.php';?>
                 </a>
               </li>
               <li>
-                <a href="#">
+              <a href="all_files.php">
                   <i class="material-symbols-outlined">save</i>
                   <span class="link-name">All Files</span>
                 </a>

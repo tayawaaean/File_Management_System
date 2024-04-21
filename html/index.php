@@ -19,13 +19,13 @@ include '../connection/connection.php';?>
     <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
-    <title>Admin Dashboard Panel</title> 
+    <title>Admin Panel</title> 
 </head>
 <body>
     <nav>
         <div class="logo-name">
             <div class="logo-image">
-                <img src="/img/BNHS Logo.png" alt="">
+                <img src="../img/BNHS Logo.png" alt="">
             </div>
 
             <span class="logo_name">Bingao NHS</span>
@@ -35,10 +35,10 @@ include '../connection/connection.php';?>
             <ul class="nav-links">
                 <li><a href="index.php">
                     <i class="uil uil-estate"></i>
-                    <span class="link-name">Dashboard</span>
+                    <span class="link-name">All Files</span>
                 </a></li>
                 <li>
-                <a href="#">
+                <a href="all_files.php">
                   <i class="material-symbols-outlined">save</i>
                   <span class="link-name">All Files</span>
                 </a>
@@ -84,7 +84,7 @@ include '../connection/connection.php';?>
         <div class="dash-content">
             <div class="overview">
                 <div class="title">
-                    <h2>Dashboard</h2>
+                    <h2>All Files</h2>
                 </div>
                 <hr>
 

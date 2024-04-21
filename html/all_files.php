@@ -19,7 +19,7 @@
 
     <script src="../js/my_files.js"></script>
 
-    title>BNHS File Management System</title> 
+    <title>Admin Panel</title>
 </head>
 <body>
     <nav>
@@ -33,21 +33,19 @@
         <!-- Menu Items -->
         <div class="menu-items">
             <ul class="nav-links">
-                <li><a href="employee_index.php">
+                <li><a href="index.php">
                     <i class="uil uil-estate"></i>
                     <span class="link-name">Dashboard</span>
                 </a></li>
-                <li><a href="my_files.php">
-                    <i class='bx bx-folder-open'></i>
-                    <span class="link-name">My Files</span>
-                </a></li>
-                <li><a href="personal_info.php">
+                <li>
+                <a href="all_files.php">
+                  <i class="material-symbols-outlined">save</i>
+                  <span class="link-name">All Files</span>
+                </a>
+              </li>
+                <li><a href="user.php">
                     <i class="material-symbols-outlined">person</i>
-                    <span class="link-name">Personal Info</span>
-                </a></li>
-                <li><a href="../inbox/inbox.html">
-                    <i class="material-symbols-outlined">inbox</i>
-                    <span class="link-name">Inbox</span>
+                    <span class="link-name">Employees</span>
                 </a></li>
             </ul>
             
