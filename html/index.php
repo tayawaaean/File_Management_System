@@ -84,7 +84,7 @@ include '../connection/connection.php';?>
         <div class="dash-content">
             <div class="overview">
                 <div class="title">
-                    <h2>All Files</h2>
+                    <h2>Dashboard</h2>
                 </div>
                 <hr>
 
