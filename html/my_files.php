@@ -16,6 +16,7 @@
     <!-- Internal CSS -->
     
     <link rel="stylesheet" href="../css/my_files.css">
+    
 
     <script src="../js/my_files.js"></script>
 
@@ -66,7 +67,7 @@
                 <div class="mode-toggle">
                   <span class="switch"></span>
                 </div>
-            </li>
+                </li>
             </ul>
         </div>
     </nav>
@@ -86,124 +87,129 @@
                 <div class="title">
                     <h2>My Files</h2>
                 </div>
+                <hr>
             </div>
 
             <!-- Search Box and Sort Select -->
-            <div class="bottom-search">
-                <div class="search">
-                    <i class="uil uil-search"></i>
-                    <input type="text" id="searchInput" placeholder="Search..." oninput="handleSearch()">
-                </div>
+<div class="container">
+    <div class="bottom-search">
+        <div class="search">
+            <i class="uil uil-search"></i>
+                <input type="text" id="searchInput" placeholder="Search..." oninput="handleSearch()">
+        </div>
 
-                <div class="button-container">
-                    <div class="dropdown">
-                        <button id="dropdown1" class="dropbtn">
-                            <i class="material-symbols-outlined">upload</i>
+        <div class="button-container">
+            <div class="dropdown">
+                <button id="dropdown1" class="dropbtn">
+                    <i class="material-symbols-outlined">upload</i>
+                </button>
+                    <div class="dropdown-content">
+                        <button id="addFolderBtn" class="add-folder-icon">
+                            <i class="material-symbols-outlined">create_new_folder</i>
+                            <span class="text">Create Folder</span>
                         </button>
-                        <div class="dropdown-content">
-                            <button id="addFolderBtn" class="add-folder-icon">
-                                <i class="material-symbols-outlined">create_new_folder</i>
-                                <span class="text">Create Folder</span>
-                            </button>
-                            <button onclick="document.getElementById('fileUpload').click();">
-                                <i class="material-symbols-outlined">upload_file</i>
-                                <span class="text">File Upload</span>
-                            </button>
-                        </div>
-                    </div>
-                    <button onclick="toggleLayout()">
-                        <i class="material-symbols-outlined">view_list</i>
-                    </button>
-                    <div class="dropdown2">
-                        <button class="dropbtn2">
-                            <i class="material-symbols-outlined">filter_list</i>
+                        <button onclick="document.getElementById('fileUpload').click();">
+                            <i class="material-symbols-outlined">upload_file</i>
+                            <span class="text">File Upload</span>
                         </button>
-                        <div class="dropdown-content2">
-                            <a href="#" id="sortByName">Sort by Name </a>
-                            <a href="#" id="sortByDate">Sort by Date</a>
-                            <a href="#" id="sortByFileType">Sort by File Type</a>
-                            <a href="#" id="sortByFileSize">Sort by File Size</a>
-                        </div>
-
                     </div>
+            </div>
+                <button onclick="toggleLayout()" class="dropbttn">
+                    <i class="material-symbols-outlined">view_list</i>
+                </button>
+            <div class="dropdown2">
+                <button class="dropbtn2">
+                    <i class="material-symbols-outlined">filter_list</i>
+                </button>
+                <div class="dropdown-content2">
+                    <a href="#" id="sortByName">Sort by Name </a>
+                    <a href="#" id="sortByDate">Sort by Date</a>
+                    <a href="#" id="sortByFileType">Sort by File Type</a>
+                    <a href="#" id="sortByFileSize">Sort by File Size</a>
                 </div>
-
             </div>
         </div>
-        <div id="folderPopup" class="popup" style="display: none;">
-            <form id="folderForm">
-                <label for="folderName" class="label">Folder Name:</label>
+    </div>
+    <div id="folderPopup" class="popup" style="display: none;">
+        <form id="folderForm">
+            <label for="folderName" class="label">Folder Name:</label>
                 <input type="text" id="folderName" name="folderName" class="input" required>
-                <div class="button-group">
-                    <button type="submit" class="button">Create</button>
-                    <button type="button" id="cancelButton" class="button" onclick="cancelFolderCreation()">Cancel</button>
-                </div>
-            </form>
-        </div>
+            <div class="button-group">
+                <button type="submit" class="button">Create</button>
+                <button type="button" id="cancelButton" class="button" onclick="cancelFolderCreation()">Cancel</button>
+            </div>
+        </form>
+    </div>
+    <div id="renamePopup" class="popup" style="display: none;">
+        <form id="renameForm">
+            <label for="newFolderName" class="label">New Folder Name:</label>
+            <input type="text" id="newFolderName" name="newFolderName" class="input" required>
+            <button type="submit" id="confirmRenameBtn">Rename</button>
+            <button type="button" id="cancelRenameBtn" class="button" onclick="cancelFolderCreation()">Cancel</button>
+        </form>
+    </div>
 
-
-        <div id="renamePopup" class="popup" style="display: none;">
-            <form id="renameForm">
-                <label for="newFolderName" class="label">New Folder Name:</label>
-                <input type="text" id="newFolderName" name="newFolderName" class="input" required>
-                <button type="submit" id="confirmRenameBtn">Rename</button>
-                <button type="button" id="cancelRenameBtn" class="button" onclick="cancelFolderCreation()">Cancel</button>
-            </form>
-        </div>
-
-        <div id="deletePopup" class="popup" style="display: none;">
-            <div class="popup-content">
-                <h3>Delete Folder</h3>
-                <p>Are you sure you want to delete this folder?</p>
-                <div class="buttons">
-                    <button id="confirmDeleteBtn">Delete</button>
-                    <button id="cancelDeleteBtn">Cancel</button>
-                </div>
+    <div id="deletePopup" class="popup" style="display: none;">
+        <div class="popup-content">
+            <h3>Delete Folder</h3>
+            <p>Are you sure you want to delete this folder?</p>
+            <div class="buttons">
+                <button id="confirmDeleteBtn">Delete</button>
+                <button id="cancelDeleteBtn">Cancel</button>
             </div>
         </div>
+<<<<<<< Updated upstream
         <div class="separation-text" id="seperationText">Folders</div>
         <div class="container">
             <div class="folder-container" id="folderGrid" ondrop="drop(event, 'folder')" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
                 <div class="folders">
                     <div class="folder">Folder 1</div>
+=======
+    </div>
+    <div class="separation-text" id="seperationText">Folder</div>
+        <div class="folder-container" id="folderGrid" ondrop="drop(event, 'folder')" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
+            <div class="folders">
+                <div class="folder">Folder 1</div>
+>>>>>>> Stashed changes
                     <!-- Add more folder elements as needed -->
                     <!-- Folders will be dynamically added here -->
                 </div>
             </div>
             <!-- Separation text -->
             <div class="separation-text" id="TextFiles">Files</div>
-
             <!-- File container -->
-            <div class="file-container" id="fileGrid" ondrop="drop(event, 'file')" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
-                <div class="files1">
-                    <div class="file1">
-                        <span class="file1-name">Your File Name Here</span>
-                    </div>
-                    <div class="file1">
-                        <span class="file1-name">Your.pdf</span>
-                    </div>
+                <div class="file-container" id="fileGrid" ondrop="drop(event, 'file')" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
+                    <div class="files1">
+                        <div class="file1">
+                            <span class="file1-name">Your File Name Here</span>
+                        </div>
+                        <div class="file1">
+                            <span class="file1-name">Your.pdf</span>
+                        </div>
                     <!-- Add more file elements as needed -->
+                    </div>
+                </div>
+                <div id="fileTable" class="table-containers">
+                    <div class="files-table-wrapper">
+                        <table id="filesTable" class="tables">
+                            <thead>
+                                <tr>
+                                    <th>File Name</th>
+                                    <th>Last Modified</th>
+                                    <th>File Size</th>
+                                    <th>Owner</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
-
-        <div id="fileTable" class="table-containers">
-            <div class="files-table-wrapper">
-                <table id="filesTable" class="tables">
-                    <thead>
-                        <tr>
-                            <th>File Name</th>
-                            <th>Last Modified</th>
-                            <th>File Size</th>
-                            <th>Owner</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                    </tbody>
-                </table>
-            </div>
-        </div>
+    </div>
+</div>
 
 
 

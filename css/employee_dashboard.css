@@ -302,7 +302,6 @@ nav.close ~ .dashboard .top{
     font-size: 24px;
     font-weight: 500;
     color: var(--text-color);
-    margin-left: 10px;
 }
 .buttons{
     background-color: white;

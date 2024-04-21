@@ -25,7 +25,11 @@
     --tran-03: all 0.3s ease;
     --tran-03: all 0.2s ease;
 }
-
+hr {
+    margin-top: -30px;
+    margin-bottom: 40px;
+    border-top: 1px solid #DDD;
+}
 body{
     min-height: 100vh;
     background-color: whitesmoke;
@@ -279,8 +283,17 @@ nav.close ~ .dashboard .top{
     border-radius: 50%;
 }
 .dashboard .dash-content{
-    padding-top: 50px;
+    padding-top: 23px;
     margin: 40px;
+}
+.container {
+    flex-basis: calc(50% - 20px); /* 50% width with margin included */
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px;
+    height: 700px;
 }
 .dash-content .title{
     display: flex;
@@ -405,7 +418,7 @@ nav.close ~ .dashboard .top{
     }
 
     .file1:hover {
-        background-color: #808080; 
+        background-color: none; 
         border-radius: 10px; 
     }
 
@@ -434,9 +447,11 @@ nav.close ~ .dashboard .top{
     text-align: left;
     margin-top: 30px;
     margin-bottom: 10px;
-    color: #888;
-    font-size: 18px;
+    color: black;
+    font-size: 24px;
     display: none;
+    font-family: montserrat;
+    font-weight: bold;
 }
 
 .add-folder-icon {
@@ -553,8 +568,8 @@ nav.close ~ .dashboard .top{
 
 
 .table-containers {
-    overflow-x: auto;
-    max-width: 100%;
+    overflow-y: auto;
+    max-height: 580px;
     margin-top: 30px;
 
 }
@@ -562,8 +577,10 @@ nav.close ~ .dashboard .top{
 
 .tables {
     width: 100%;
-    height: 100%;
-    table-layout: fixed;
+    border-collapse: collapse;
+    color:#000;
+    font-family: 'Lato', sans-serif;
+    border: 1px solid #DDD;
 }
 
 .tables th {
@@ -571,7 +588,7 @@ nav.close ~ .dashboard .top{
     color: black;
     padding: 10px;
     text-align: left;
-    border-right: 1px black;
+    border-right: 1px solid #DDD;
 }
 tables td:first-child {
     border-left: 1px solid #DDD;
@@ -586,19 +603,34 @@ tables td:first-child {
     overflow: hidden; 
     text-overflow: ellipsis; 
 }
+.tables th:first-child,
+.tables td:first-child {
+    width: 30%; /* Adjust the width percentage as needed */
+}
+
+.tables th:not(:first-child),
+.tables td:not(:first-child) {
+    width: 15%; /* Adjust the width percentage for other columns as needed */
+}
 
 .bottom-search {
     display: flex;
     align-items: center;
 }
-
+.bottom-search .search i{
+    font-size: 24px;
+    position: absolute;
+    margin-left: 10px;
+    margin-top: 3px;
+    color: #707070;
+}
 .search {
     margin-right: auto; 
 }
 
 
 .bottom-search input[type="text"] {
-    padding: 8px 30px 8px 30px; 
+    padding: 8px 30px 8px 50px; 
     border: 1px solid var(--border-color);
     background-color: var(--panel-color);
     border-radius: 25px;
@@ -694,7 +726,7 @@ tables td:first-child {
 
 
 .dropdown:hover .dropbtn {
-    background-color: #3e8e41;
+    background-color: none;
 }
 
 
@@ -757,7 +789,39 @@ button {
     margin-left: 2px; 
     flex-shrink: 0; 
 }
-
+.dropbtn{
+    position: relative;
+    height: 35px;
+    width: 35px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    border-color: #DDD;
+}
+.dropbttn{
+    position: relative;
+    height: 35px;
+    width: 35px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    border-color: #DDD;
+}
+.dropbtn2{
+    position: relative;
+    height: 35px;
+    width: 35px;
+    border-radius: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    border-color: #DDD;
+}
 .drag-over {
     border: 2px dashed #0E4BF1; 
 }
