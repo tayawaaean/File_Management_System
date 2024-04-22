@@ -1,31 +1,7 @@
 <?php
 session_start();
 include '../connection/connection.php';
-
-// Check if the user is logged in
-if (!isset($_SESSION['username'])) {
-    // Redirect to the login page if not logged in
-    header("Location: login.php");
-    exit();
-}
-
-// Retrieve the logged-in user's data from the database
-$username = $_SESSION['username'];
-$sql = "SELECT * FROM users WHERE username='$username'";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    // User found, fetch user details
-    $user = $result->fetch_assoc();
-} else {
-    // User not found, handle accordingly (redirect or display error)
-    $errorMessage = "User not found.";
-}
-
-// Pass the user data to JavaScript
-echo '<script>';
-echo 'const userData = ' . json_encode($user) . ';'; // Convert user data to JSON
-echo '</script>';
+include '../connection/login_checker.php';
 ?>
 
 <!DOCTYPE html>

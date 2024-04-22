@@ -1,9 +1,7 @@
 <?php
-include '../connection/connection.php';?>
-<?php
-include '../html/login_check.php';?>
-
-
+include '../connection/connection.php';
+include '../connection/login_check.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

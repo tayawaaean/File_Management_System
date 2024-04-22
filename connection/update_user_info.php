@@ -1,5 +1,8 @@
 <?php
 session_start();
+
+date_default_timezone_set('Asia/Manila');
+
 include '../connection/connection.php';
 
 // Check if the user is logged in
@@ -59,3 +62,32 @@ $updateTypes .= "i";
 $stmt = $conn->prepare($query);
 $stmt->bind_param($updateTypes, ...$updateParams);
 $result = $stmt->execute();
+
+// Log activity
+$authorUsername = $_SESSION['username'];
+$action = "Profile Updated";
+$datetime = date("Y-m-d H:i:s");
+
+// Retrieve author's name from users table
+$queryAuthorName = "SELECT name FROM users WHERE username=?";
+$stmtAuthorName = $conn->prepare($queryAuthorName);
+$stmtAuthorName->bind_param("s", $authorUsername);
+$stmtAuthorName->execute();
+$resultAuthorName = $stmtAuthorName->get_result();
+
+if ($resultAuthorName->num_rows > 0) {
+    $rowAuthorName = $resultAuthorName->fetch_assoc();
+    $authorName = $rowAuthorName['name'];
+
+    // Insert into activity_log
+    $queryLog = "INSERT INTO activity_log (Author, job_title, DateTime, Action, Description) VALUES (?, ?, ?, ?, ?)";
+    $stmtLog = $conn->prepare($queryLog);
+    $job_title = "Employee"; // Assuming the user's job title is always "Employee"
+    $description = $authorName; // Description as the author's name
+    $stmtLog->bind_param("sssss", $authorName, $job_title, $datetime, $action, $description);
+    $stmtLog->execute();
+} else {
+    echo "Author name not found.";
+}
+
+?>
