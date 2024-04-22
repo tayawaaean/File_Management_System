@@ -1,4 +1,3 @@
-
 document.addEventListener('DOMContentLoaded', function() {
     function addCancelFunctionality(editBtnId, cancelBtnId, saveBtnId, fields) {
         var editBtn = document.getElementById(editBtnId);
@@ -44,8 +43,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
     addCancelFunctionality(
         'contact-edit',
-        'cancel-btn',
-        'save-btn',
+        'cancel-btn-contact',
+        'save-btn-contact',
         [
             { name: 'email', element: document.getElementById('email') },
             { name: 'phone', element: document.getElementById('phone') },
@@ -79,25 +78,100 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 document.addEventListener('DOMContentLoaded', function(){
-    const userName = document.getElementById('userName');
-    const userNameInput = document.getElementById('name');
-
-    userName.textContent = userNameInput.value;
-
-    userNameInput.addEventListener('input', function(){
-        userName.textContent = userNameInput.value;
-    });
-
+    // Populate user information
+    document.getElementById('userName').textContent = userData.name;
+    document.getElementById('work-title').textContent = userData.job_title;
+    document.getElementById('email').value = userData.email;
+    document.getElementById('phone').value = userData.phone;
+    document.getElementById('mobile').value = userData.mobile;
+    document.getElementById('web').value = userData.website;
+    document.getElementById('Address').value = userData.address;
+    document.getElementById('birthday').value = userData.birthday;
+    document.getElementById('nickname').value = userData.nickname;
+    document.getElementById('jobtitle').value = userData.job_title;
+    document.getElementById('Department').value = userData.department;
+    document.getElementById('Company').value = userData.company;
+    document.getElementById('current-location').value = userData.current_location;
 });
 
-document.addEventListener('DOMContentLoaded', function(){
-    const workTitle = document.getElementById('work-title');
-    const workTitleInput = document.getElementById('jobtitle');
-    
-    const workValue = workTitleInput.value;
-    
-    workTitle.textContent = workValue;
-    workTitleInput.addEventListener('input', function(){
-        workTitle.textContent = workTitleInput.value;
-    });
+
+// Add event listeners to edit buttons
+document.getElementById("contact-edit").addEventListener("click", function() {
+    toggleEditMode("first-side");
 });
+
+document.getElementById("info-edit").addEventListener("click", function() {
+    toggleEditMode("second-side");
+});
+
+document.getElementById("work-edit").addEventListener("click", function() {
+    toggleEditMode("third-side");
+});
+// Function to toggle edit mode for a given section
+function toggleEditMode(sectionId) {
+    var section = document.querySelector("." + sectionId);
+    var inputs = section.querySelectorAll("input");
+
+    inputs.forEach(function(input) {
+        input.readOnly = !input.readOnly; // Toggle read-only state
+    });
+}
+
+// Save button functionality
+document.getElementById("save-btn-contact").addEventListener("click", function() {
+    // Gather edited data from input fields
+    var editedData = {
+        email: document.getElementById("email").value,
+        phone: document.getElementById("phone").value,
+        mobile: document.getElementById("mobile").value,
+        website: document.getElementById("web").value
+        // Add other fields as needed
+    };
+
+    // Send edited data to the server via AJAX for updating
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "update_user_info.php", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+   
+    xhr.send(JSON.stringify(editedData));
+});
+
+// Save button functionality for other sections (similar to the above)
+document.getElementById("save-btn-info").addEventListener("click", function() {
+    // Gather edited data from input fields in the second-side section
+    var editedData = {
+        name: document.getElementById("name").value,
+        birthday: document.getElementById("birthday").value,
+        address: document.getElementById("Address").value,
+        nickname: document.getElementById("nickname").value
+        // Add other fields as needed
+    };
+    
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "update_user_info.php", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+   
+    xhr.send(JSON.stringify(editedData));
+    // Send edited data to the server via AJAX for updating
+    // Same as above, but adjust the endpoint and input data accordingly
+});
+
+document.getElementById("save-btn-work").addEventListener("click", function() {
+    // Gather edited data from input fields in the third-side section
+    var editedData = {
+        job_title: document.getElementById("jobtitle").value,
+        department: document.getElementById("Department").value,
+        company: document.getElementById("Company").value,
+        current_location: document.getElementById("current-location").value
+        // Add other fields as needed
+    };
+  var xhr = new XMLHttpRequest();
+    xhr.open("POST", "update_user_info.php", true);
+    xhr.setRequestHeader("Content-Type", "application/json");
+  
+    xhr.send(JSON.stringify(editedData));
+    // Send edited data to the server via AJAX for updating
+    // Same as above, but adjust the endpoint and input data accordingly
+});
+
+
