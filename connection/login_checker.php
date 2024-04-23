@@ -1,6 +1,5 @@
 <?php
 // Start or resume the session
-session_start();
 
 // Check if the user is logged in
 if (!isset($_SESSION['username'])) {
@@ -10,7 +9,7 @@ if (!isset($_SESSION['username'])) {
 }
 
 // Include your database connection file
-include 'db_connection.php'; // Make sure to replace 'db_connection.php' with your actual file name
+include '../connection/connection.php'; // Make sure to replace 'db_connection.php' with your actual file name
 
 // Prepare and execute the query using a prepared statement
 $stmt = $conn->prepare("SELECT * FROM users WHERE username=?");
