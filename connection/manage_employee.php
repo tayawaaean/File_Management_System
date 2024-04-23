@@ -30,7 +30,7 @@ if (isset($_POST['delete_user'])) {
                     echo "<script>alert('Failed to delete user folder from Employee Files.');</script>";
                 }
             }
-            header("location: user.php");
+            header("location: ../html/user.php");
         } else {
             echo "<script>alert('Failed to delete user.');</script>";
         }

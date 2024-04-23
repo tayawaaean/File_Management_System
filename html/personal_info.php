@@ -1,5 +1,8 @@
 <?php
-include '../connection/verifier.php';?>
+session_start();
+include '../connection/connection.php';
+include '../connection/login_checker.php';
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,10 +13,17 @@ include '../connection/verifier.php';?>
     <link rel="stylesheet" href="../css/personal_info.css">
     <link rel="stylesheet" href="../css/style-personal-info.css">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v4.0.0/css/line.css">
-    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
-    <title>BNHS File Management System</title> 
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.11.5/js/dataTables.bootstrap5.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
+
+    <title>Personal Information</title>
 </head>
 <body>
     <nav>
@@ -38,10 +48,6 @@ include '../connection/verifier.php';?>
                 <li><a href="personal_info.php">
                     <i class="material-symbols-outlined">person</i>
                     <span class="link-name">Personal Info</span>
-                </a></li>
-                <li><a href="../inbox/inbox.html">
-                    <i class="material-symbols-outlined">inbox</i>
-                    <span class="link-name">Inbox</span>
                 </a></li>
             </ul>
             
@@ -74,11 +80,11 @@ include '../connection/verifier.php';?>
                 <input type="text" placeholder="Search anything...">
             </div>
             
-            <img src="/img/Catiwa, Kenric.jpeg" alt="">
+            <img src="../img/Catiwa, Kenric.jpeg" alt="">
         </div>
-    <div class="container">
-        <div class="header">
-           <div class="background">
+        <div class="container">
+    <div class="header">
+        <div class="background">
             <img class="image-background-profile" src="../img/background_temp.jpg" alt="background-lang">
             <div class="profile-image">
                 <div class="image-user">
@@ -86,98 +92,88 @@ include '../connection/verifier.php';?>
                 </div>
             </div>
             <div class="white-bg">
-                <span class="userName" id="userName"></span>
-                <span class="userTitle" id="work-title"></span>
+                <span class="userName" id="userName"><?php echo $user['name']; ?></span>
+                <span class="userTitle" id="work-title"><?php echo $user['job_title']; ?></span>
             </div>
-           </div>
-        </div>
-        <div class="first-side">
-            <div class="operation">
-                <p class="textheader">Contact</p>
-                <div class="buttons">
-                <a class="cancel-btn"  id="cancel-btn"><span class="material-symbols-outlined">
-                    close
-                    </span></i></a> 
-                <a class="save-btn" id="save-btn"><span class="material-symbols-outlined">
-                    check_small
-                    </span></a>
-                <a class="edit-info-btn"  id="contact-edit"><img src="../img/edit-246.png" alt="edit-icon"></a>
-                </div>
-            </div>
-            <div class="content-info">
-            <label class="user-label" for="email">Email</label> 
-            <input type="text" id="email" readonly value="jjtengtejada754gmail">
-            
-        
-            <label class="user-label" for="phone">Phone</label>
-            <input type="text" id="phone" readonly value="00000000000"> 
-
-            <label class="user-label" for="mobile">Mobile</label>
-            <input type="text" id="mobile" readonly value="00000000000"> 
-
-            <label class="user-label" for="web">Website</label>
-            <input type="text" id="web" readonly value="asdsadsadsadsadsadsad"> 
-            </div>
-        </div>
-
-
-        <div class="second-side">
-            <div class="operation">
-                <p class="textheader">User Information</p>
-                <div class="buttons">
-                <a class="cancel-btn"  id="cancel-btn-info"><span class="material-symbols-outlined">
-                    close
-                    </span></i></a> 
-                <a class="save-btn" id="save-btn-info"><span class="material-symbols-outlined">
-                    check_small
-                    </span></a>
-                <a class="edit-info-btn"  id="info-edit"><img src="../img/edit-246.png" alt="edit-icon"></a>
-                </div>
-            </div>
-            <div class="content-info">
-
-            <label class="user-label"  for="name">Name</label>
-            <input type="text" id="name" readonly value="Kenric Catiwa"> 
-
-            <label class="user-label" for="birthday">BirthDay</label>
-            <input type="text" id="birthday" readonly value="05 June 2002"> 
-        
-            <label class="user-label" for="Address">Address</label>
-            <input type="text" id="Address" readonly value="Mexico, Pampanga"> 
-
-            <label class="user-label" for="nickname">Nickname</label>
-            <input type="text" id="nickname" readonly value="Berto"> 
-                </div>
-        </div>
-        <div class="third-side">
-                <div class="operation">
-                    <p class="textheader">Work</p>
-                    <div class="buttons">
-                    <a class="cancel-btn"  id="cancel-btn-work"><span class="material-symbols-outlined">
-                        close
-                        </span></i></a> 
-                    <a class="save-btn" id="save-btn-work"><span class="material-symbols-outlined">
-                        check_small
-                        </span></a>
-                    <a class="edit-info-btn"  id="work-edit"><img src="../img/edit-246.png" alt="edit-icon"></a>
-                    </div>
-                </div>
-            
-            <div class="content-info">
-                <label class="user-label" for="jobtitle">Job Title</label>
-                <input type="text" id="jobtitle" readonly value="Dean"> 
-    
-                <label for="Department"class="user-label">Department</label>
-                <input type="text" id="Department" readonly value="Com Eng"> 
-            
-                <label class="user-label" for="Company">Company</label>
-                <input type="text" id="Company" readonly value="Mexico, Pampanga"> 
-    
-                <label class="user-label" for="current-location">Current Location</label>
-                <input type="text" id="current-location" readonly value="Berto"> 
-                    </div>
         </div>
     </div>
+
+    <!-- First Side -->
+    <div class="first-side">
+        <div class="operation">
+            <p class="textheader">Contact</p>
+            <div class="buttons">
+                <a class="cancel-btn" id="cancel-btn-contact"><span class="material-symbols-outlined">close</span></a> 
+                <a class="save-btn" id="save-btn-contact"><span class="material-symbols-outlined">check_small</span></a>
+                <a class="edit-info-btn" id="contact-edit"><img src="../img/edit-246.png" alt="edit-icon"></a>
+            </div>
+        </div>
+        <div class="content-info">
+            <label class="user-label" for="email">Email</label> 
+            <input type="text" id="email" readonly value="<?php echo $user['email']; ?>">
+            
+            <label class="user-label" for="phone">Phone</label>
+            <input type="text" id="phone" readonly value="<?php echo $user['phone']; ?>"> 
+
+            <label class="user-label" for="mobile">Mobile</label>
+            <input type="text" id="mobile" readonly value="<?php echo $user['mobile']; ?>"> 
+
+            <label class="user-label" for="web">Website</label>
+            <input type="text" id="web" readonly value="<?php echo $user['website']; ?>"> 
+        </div>
+    </div>
+
+    <!-- Second Side -->
+    <div class="second-side">
+        <div class="operation">
+            <p class="textheader">User Information</p>
+            <div class="buttons">
+                <a class="cancel-btn" id="cancel-btn-info"><span class="material-symbols-outlined">close</span></a> 
+                <a class="save-btn" id="save-btn-info"><span class="material-symbols-outlined">check_small</span></a>
+                <a class="edit-info-btn" id="info-edit"><img src="../img/edit-246.png" alt="edit-icon"></a>
+            </div>
+        </div>
+        <div class="content-info">
+            <label class="user-label" for="name">Name</label>
+            <input type="text" id="name" readonly value="<?php echo $user['name']; ?>"> 
+
+            <label class="user-label" for="birthday">BirthDay</label>
+            <input type="text" id="birthday" readonly value="<?php echo $user['birthday']; ?>"> 
+            
+            <label class="user-label" for="Address">Address</label>
+            <input type="text" id="Address" readonly value="<?php echo $user['address']; ?>"> 
+
+            <label class="user-label" for="nickname">Nickname</label>
+            <input type="text" id="nickname" readonly value="<?php echo $user['nickname']; ?>"> 
+        </div>
+    </div>
+
+    <!-- Third Side -->
+    <div class="third-side">
+        <div class="operation">
+            <p class="textheader">Work</p>
+            <div class="buttons">
+                <a class="cancel-btn" id="cancel-btn-work"><span class="material-symbols-outlined">close</span></a> 
+                <a class="save-btn" id="save-btn-work"><span class="material-symbols-outlined">check_small</span></a>
+                <a class="edit-info-btn" id="work-edit"><img src="../img/edit-246.png" alt="edit-icon"></a>
+            </div>
+        </div>
+        <div class="content-info">
+            <label class="user-label" for="jobtitle">Job Title</label>
+            <input type="text" id="jobtitle" readonly value="<?php echo $user['job_title']; ?>"> 
+
+            <label for="Department" class="user-label">Department</label>
+            <input type="text" id="Department" readonly value="<?php echo $user['department']; ?>"> 
+        
+            <label class="user-label" for="Company">Company</label>
+            <input type="text" id="Company" readonly value="<?php echo $user['company']; ?>"> 
+
+            <label class="user-label" for="current-location">Current Location</label>
+            <input type="text" id="current-location" readonly value="<?php echo $user['current_location']; ?>"> 
+        </div>
+    </div>
+</div>
+
 </body>
 <script src="../js/personal_info.js"></script>
 <script src="../js/script.js"></script>

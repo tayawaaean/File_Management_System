@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 21, 2024 at 10:27 AM
+-- Generation Time: Apr 22, 2024 at 02:44 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -126,17 +126,19 @@ CREATE TABLE `users` (
   `department` varchar(128) NOT NULL,
   `company` varchar(128) NOT NULL,
   `current_location` text NOT NULL,
-  `user_type` varchar(20) NOT NULL
+  `user_type` varchar(20) NOT NULL,
+  `birthday` varchar(64) NOT NULL,
+  `nickname` varchar(64) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `email`, `username`, `password`, `phone`, `mobile`, `website`, `address`, `job_title`, `department`, `company`, `current_location`, `user_type`) VALUES
-(17, 'Aean Gabrielle D. Tayawa', 'tayawaaean@gmail.com', 'tayawaaean', '202cb962ac59075b964b07152d234b70', '', '', '', '', '', '', '', '', 'Admin'),
-(27, 'Micheal Jay A. Pedronan', 'michealjay@gmail.com', 'mekel', '202cb962ac59075b964b07152d234b70', '', '', '', '', '', '', '', '', 'Employee'),
-(30, 'Kimberly Mae B. Reodique', 'kimberlyreodique@gmail.com', 'kimberly', '202cb962ac59075b964b07152d234b70', '', '', '', '', '', '', '', '', '');
+INSERT INTO `users` (`id`, `name`, `email`, `username`, `password`, `phone`, `mobile`, `website`, `address`, `job_title`, `department`, `company`, `current_location`, `user_type`, `birthday`, `nickname`) VALUES
+(17, 'Aean Gabrielle D. Tayawa', 'tayawaaean@gmail.com', 'tayawaaean', '202cb962ac59075b964b07152d234b70', '', '', '', '', '', '', '', '', 'Admin', '', ''),
+(27, 'Micheal Jay A. Pedronan', 'michealjay@gmail.com', 'mekel', '202cb962ac59075b964b07152d234b70', '09568317230', '', '', '', '', '', '', '', 'Employee', '', ''),
+(30, 'Kimberly Mae B. Reodique', 'kimberlyreodique@gmail.com', 'kimberly', '202cb962ac59075b964b07152d234b70', '', '', '', '', '', '', '', '', '', '', '');
 
 --
 -- Indexes for dumped tables

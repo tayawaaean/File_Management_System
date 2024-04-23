@@ -2,7 +2,7 @@
 <?php
 include '../connection/verifier.php';?>
 <?php include '../connection/connection.php';?>
-<?php include 'manage_employee.php';?>
+<?php include '../connection/manage_employee.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -117,7 +117,7 @@ include '../connection/verifier.php';?>
                     </tr>
                 </thead>
               <!-- Table structure within the form for deleting users -->
-              <form action="manage_employee.php" method="POST">
+              <form action="../connection/manage_employee.php" method="POST">
                 <tbody id="tableBody">
                     <?php
                     $sql = "SELECT * FROM users";
