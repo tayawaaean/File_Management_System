@@ -158,19 +158,11 @@
                 <button id="cancelDeleteBtn">Cancel</button>
             </div>
         </div>
-<<<<<<< Updated upstream
-        <div class="separation-text" id="seperationText">Folders</div>
-        <div class="container">
-            <div class="folder-container" id="folderGrid" ondrop="drop(event, 'folder')" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
-                <div class="folders">
-                    <div class="folder">Folder 1</div>
-=======
     </div>
     <div class="separation-text" id="seperationText">Folder</div>
         <div class="folder-container" id="folderGrid" ondrop="drop(event, 'folder')" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
             <div class="folders">
                 <div class="folder">Folder 1</div>
->>>>>>> Stashed changes
                     <!-- Add more folder elements as needed -->
                     <!-- Folders will be dynamically added here -->
                 </div>
