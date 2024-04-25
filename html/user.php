@@ -133,7 +133,7 @@ include '../connection/verifier.php';?>
                             echo "<td>" . $row['phone'] . "</td>";
                             echo "<td>" . $row['email'] . "</td>";
                             echo "<td>";
-                            echo " <button class='btn btn-primary btn-sm'>Edit</button>";
+                            echo " <button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#editModal'>Edit</button>";
                             echo "<button type='submit' class='btn btn-danger btn-sm' name='delete_user' onclick='return confirmDelete();'>Delete</button>";
                             echo "<input type='hidden' name='id' value='" . $row['id'] . "'>";
                             echo "</td>";
@@ -239,6 +239,7 @@ include '../connection/verifier.php';?>
                     </div>
                 </div>
                 <div class="modal-footer">
+                    <button type="button" class="btn btn-info" data-dismiss="modal">Save Changes</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
