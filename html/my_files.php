@@ -1,4 +1,9 @@
-﻿<!DOCTYPE html>
+﻿<?php
+session_start();
+include '../connection/connection.php';
+include '../connection/login_checker.php';
+?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,6 +25,32 @@
     
 
     <script src="../js/my_files.js"></script>
+    <script> function createFolder(event) {
+    event.preventDefault(); // Prevent default form submission behavior
+
+    // Get the folder name from the input field
+    var folderName = document.getElementById('folderName').value;
+
+    // AJAX call to PHP script to create folder
+    var xhr = new XMLHttpRequest();
+    xhr.open('POST', '../connection/save_folder.php', true);
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+    xhr.onreadystatechange = function() {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            if (xhr.status === 200) {
+                // Folder created successfully
+                console.log('Folder created successfully');
+                // You can add further actions here, like displaying a success message or refreshing the folder list
+            } else {
+                // Error creating folder
+                console.error('Error creating folder');
+                // You can add further error handling here
+            }
+        }
+    };
+    xhr.send('folderName=' + encodeURIComponent(folderName)); // Send folder name to PHP script
+}
+    </script>
 
     <title>BNHS File Management System</title> 
 </head>
@@ -46,10 +77,6 @@
                 <li><a href="personal_info.php">
                     <i class="material-symbols-outlined">person</i>
                     <span class="link-name">Personal Info</span>
-                </a></li>
-                <li><a href="../inbox/inbox.html">
-                    <i class="material-symbols-outlined">inbox</i>
-                    <span class="link-name">Inbox</span>
                 </a></li>
             </ul>
             
@@ -132,15 +159,15 @@
         </div>
     </div>
     <div id="folderPopup" class="popup" style="display: none;">
-        <form id="folderForm">
-            <label for="folderName" class="label">Folder Name:</label>
-                <input type="text" id="folderName" name="folderName" class="input" required>
-            <div class="button-group">
-                <button type="submit" class="button">Create</button>
-                <button type="button" id="cancelButton" class="button" onclick="cancelFolderCreation()">Cancel</button>
-            </div>
-        </form>
-    </div>
+    <form id="folderForm" onsubmit="createFolder(event)">
+        <label for="folderName" class="label">Folder Name:</label>
+        <input type="text" id="folderName" name="folderName" class="input" required>
+        <div class="button-group">
+            <button type="submit" class="button">Create</button>
+            <button type="button" id="cancelButton" class="button" onclick="cancelFolderCreation()">Cancel</button>
+        </div>
+    </form>
+</div>
     <div id="renamePopup" class="popup" style="display: none;">
         <form id="renameForm">
          <label for="newFolderName" class="label">New Folder Name:</label>
@@ -149,7 +176,6 @@
             <button type="button" id="cancelRenameBtn" class="button">Cancel</button>
         </form>
     </div>
-
     <div id="deletePopup" class="popup" style="display: none;">
         <div class="popup-content">
             <h3>Delete Folder</h3>
@@ -198,9 +224,6 @@
         </div>
     </div>
 </div>
-
-
-
         <!-- Context menu template -->
         <div id="contextMenu" class="context-menu">
             <ul>

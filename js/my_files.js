@@ -107,8 +107,6 @@ document.addEventListener("DOMContentLoaded", function() {
         attachDeleteEventListener(newRow);  
     }
     
-    
-
     function togglePopup() {
         const folderPopup = document.getElementById("folderPopup");
         if (folderPopup.style.display === "none") {
@@ -612,7 +610,3 @@ function addFilesToTable1(files) {
         filesContainer.appendChild(fileDiv);
     }
 }
-
-
-
-
