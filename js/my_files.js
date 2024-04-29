@@ -1,44 +1,75 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const column1 = document.getElementById('column1');
-    const column2 = document.getElementById('column2');
-    const column3 = document.getElementById('column3');
+
     const folderGrid = document.querySelector('.grid-container');
-    const contextMenu = document.getElementById('contextMenu');
-    const folders = document.querySelectorAll('.folder');
     const addFolderBtn = document.getElementById('addFolderBtn');
-    const folderPopup = document.getElementById('folderPopup');
     const folderForm = document.getElementById('folderForm');
     const folderNameInput = document.getElementById('folderName');
     const tableBody = document.querySelector('.files-table-wrapper tbody');
     const cancelButton = document.getElementById("cancelButton");
-    const newFolderNameInput = document.getElementById('newFolderName');
-
+    
     let clickedFolder = null;
 
-    // Global array to store uploaded files
+    function showContextMenu2(event) {
+        event.preventDefault();
     
-
-    // Function to show context menu
-    function showContextMenu(event) {
-        event.preventDefault(); // Prevent default right-click menu
-        const contextMenu = document.getElementById("contextMenu");
-        const clickedFolder = event.target.closest(".folder"); // Assuming the folder element has a class "folder"
-
-        if (clickedFolder) {
-            const rect = clickedFolder.getBoundingClientRect();
-            contextMenu.style.display = "block";
-            contextMenu.style.left = (rect.left + window.scrollX + 10) + "px"; // Adjust as needed
-            contextMenu.style.top = (rect.top + window.scrollY + 10) + "px"; // Adjust as needed
+        if (event.button === 2) {
+            const clickedFolder = event.target.closest(".folder");
+            const clickedFile = event.target.closest(".file1");    
+            const contextMenu2 = document.getElementById("contextMenu2");
+    
+            if (!clickedFolder && !clickedFile) {
+                contextMenu2.style.display = "block";
+                contextMenu2.style.left = (event.clientX + window.scrollX) + "px";
+                contextMenu2.style.top = (event.clientY + window.scrollY) + "px";
+            } else {
+                contextMenu2.style.display = "none";
+            }
+        } else {
+            const contextMenu2 = document.getElementById("contextMenu2");
+            contextMenu2.style.display = "none";
         }
     }
+    
+    document.addEventListener("click", function(event) {
+        // Hide the context menu when a left click occurs
+        const contextMenu2 = document.getElementById("contextMenu2");
+        contextMenu2.style.display = "none";
+    });
+    
+    // Add event listeners for right-click and click outside the context menu to hide it
+    document.addEventListener('contextmenu', showContextMenu2);
+    document.addEventListener('click', hideContextMenu);
 
-    // Function to hide context menu
-    function hideContextMenu() {
-        const contextMenu = document.getElementById("contextMenu");
-        contextMenu.style.display = "none";
+    function showContextMenu(event) {
+    event.preventDefault(); // Prevent default right-click menu
+    const contextMenu = document.getElementById("contextMenu");
+    const clickedFolder = event.target.closest('.folder, .file1'); // Assuming the folder element has a class "folder"
+
+    if (clickedFolder) {
+        const rect = clickedFolder.getBoundingClientRect();
+        contextMenu.style.display = "block";
+        contextMenu.style.left = (rect.left + window.scrollX + 10) + "px"; // Adjust as needed
+        contextMenu.style.top = (rect.top + window.scrollY + 10) + "px"; // Adjust as needed
+    } else {
+        hideContextMenu();
     }
+}
 
-    // Function to add folder to folders section
+function hideContextMenu() {
+    const contextMenu = document.getElementById("contextMenu");
+    contextMenu.style.display = "none";
+}
+
+document.addEventListener("DOMContentLoaded", function() {
+    document.addEventListener("contextmenu", showContextMenu);
+    document.addEventListener("click", function(event) {
+        const contextMenu = document.getElementById("contextMenu");
+        if (!contextMenu.contains(event.target)) {
+            hideContextMenu();
+        }
+    });
+});
+    
     function addFolder(folderName) {
         const folderContainer = document.querySelector('.folders'); // Select the folders container
         const newFolder = document.createElement('div'); // Create a new folder div
@@ -49,43 +80,35 @@ document.addEventListener("DOMContentLoaded", function () {
         const folderNameSpan = document.createElement('span'); // Create a span element for folder name
         folderNameSpan.classList.add('folder-name'); // Add class to the span
         folderNameSpan.textContent = folderName; // Set the text content of the span
-
-        // Append icon and folder name span to the folder div
         newFolder.appendChild(icon);
         newFolder.appendChild(folderNameSpan);
-
-        // Add event listeners to the folder div
         newFolder.addEventListener('contextmenu', showContextMenu);
         newFolder.addEventListener('click', function () {
             openFolder(folderName);
         });
-
-        // Append the new folder to the folder container
         folderContainer.appendChild(newFolder);
     }
 
-
-    // Function to add folder to tables section
     function addFolderToTable(folderName) {
         const newRow = document.createElement('tr');
-        const fileIconClass = getFileIconClass(folderName);
         newRow.innerHTML = `
-            <td><i class="${fileIconClass}"></i> ${folderName}</td>
+            <td><i class="uil-folder"></i> ${folderName}</td>
             <td>${getCurrentDate()}</td>
             <td>0 MB</td>
             <td>Your Name</td>
             <td>
-                <a href="#" class="icon-button"><i class="material-symbols-outlined">download</i></a>
-                <a href="#" class="icon-button delete-file"><i class="material-symbols-outlined">delete</i></a>
-                <a href="#" class="icon-button"><i class="material-symbols-outlined">border_color</i></a>
-                
+                <a href="#" class="icon-button"><i class="material-icons">cloud_download</i></a>
+                <a href="#" class="icon-button delete-file"><i class="material-icons">delete</i></a>
+                <a href="#" class="icon-button rename-file"><i class="material-icons">border_color</i></a>
             </td>
         `;
         tableBody.appendChild(newRow);
-        attachDeleteEventListener(newRow);
+        attachRenameEventListener(newRow);
+        attachDeleteEventListener(newRow);  
     }
+    
+    
 
-    // Function to toggle popup display
     function togglePopup() {
         const folderPopup = document.getElementById("folderPopup");
         if (folderPopup.style.display === "none") {
@@ -114,10 +137,7 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     cancelButton.addEventListener("click", cancelFolderCreation);
-    // Event listener for add folder button
     addFolderBtn.addEventListener('click', togglePopup);
-
-    // Event listener for form submission
     folderForm.addEventListener('submit', handleFormSubmit);
 
     // Add event listeners to show context menu on right-click and hide it on click anywhere else
@@ -127,7 +147,7 @@ document.addEventListener("DOMContentLoaded", function () {
     // Event listener for right-click on folder
     folderGrid.addEventListener('contextmenu', function (event) {
         event.preventDefault();
-        clickedFolder = event.target.closest('.folder');
+        clickedFolder = event.target.closest('.folder, .file1');
         if (clickedFolder) {
             showContextMenu(event.clientX, event.clientY);
         }
@@ -225,16 +245,20 @@ function getFileIcon(fileExtension) {
 function displayFiles(files) {
     const fileContainer = document.querySelector('.files1');
 
-    // Clear existing files in the file container
-    fileContainer.innerHTML = '';
-
     files.forEach(file => {
         const fileName = file.name;
         const fileExtension = fileName.split('.').pop(); // Get file extension
+        
+        // Check if the file already exists in the container
+        const existingFile = fileContainer.querySelector(`[data-name="${fileName}"]`);
+        if (existingFile) {
+            return; // Skip adding the file if it already exists
+        }
 
         // Create a new div element for the file
         const fileDiv = document.createElement('div');
         fileDiv.classList.add('file1');
+        fileDiv.setAttribute('data-name', fileName); // Add data attribute to identify the file
 
         // Create an icon element based on the file extension
         const iconClass = getFileIcon(fileExtension);
@@ -255,72 +279,164 @@ function displayFiles(files) {
     });
 }
 
-
-
 function addFilesToTable(files) {
     const tableBody = document.querySelector('#filesTable tbody');
 
     for (let i = 0; i < files.length; i++) {
         const file = files[i];
-        const fileIconClass = getFileIconClass(file.name);
+        const fileExtension = getFileExtension(file.name);
+        const fileIconClass = getFileIcon(fileExtension);
         const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
 
         // Create table row
         const newRow = document.createElement('tr');
         newRow.innerHTML = `
-            <td><i class="${fileIconClass}"></i>${file.name}</td>
+            <td><i class="fas ${fileIconClass}"></i>${file.name}</td>
             <td>${getCurrentDate()}</td>
             <td>${fileSizeMB} MB</td>
             <td>Your Name</td>
             <td>
-                <a href="#" class="icon-button"><i class="material-symbols-outlined">download</i></a>
-                <a href="#" class="icon-button delete-file"><i class="material-symbols-outlined">delete</i></a>
-                <a href="#" class="icon-button"><i class="material-symbols-outlined">border_color</i></a>
+                 <a href="#" class="icon-button"><i class="material-icons">cloud_download</i></a>
+                 <a href="#" class="icon-button delete-file"><i class="material-icons">delete</i></a>
+                 <a href="#" class="icon-button rename-file"><i class="material-icons">border_color</i></a>
+            
             </td>
         `;
         tableBody.appendChild(newRow);
+        attachRenameEventListener(newRow);
         attachDeleteEventListener(newRow);
     }
 }
 
-function attachDeleteEventListener(newRow) {
-    const deleteIcon = newRow.querySelector('.delete-file');
-    const deleteConfirmation = document.getElementById('deletePopup');
-    const confirmDeleteButton = document.getElementById('confirmDeleteBtn');
-    const cancelDeleteButton = document.getElementById('cancelDeleteBtn');
-    deleteIcon.addEventListener('click', function (event) {
+// Function to get file extension
+function getFileExtension(filename) {
+    return filename.split('.').pop().toLowerCase();
+}
+
+
+
+function attachRenameEventListener(row) {
+    const renameButtons = row.querySelectorAll('.icon-button.rename-file');
+
+    // Function to handle the renaming process
+    function handleRenameClick(event) {
         event.preventDefault();
-        deleteConfirmation.style.display = 'block';
+        const folderNameCell = this.closest('tr').querySelector('td:first-child');
+        const folderName = folderNameCell.textContent.trim();
+        const renamePopup = document.getElementById('renamePopup');
+        const newFolderNameInput = document.getElementById('newFolderName');
 
-        // Event listener for confirm delete button
-        confirmDeleteButton.onclick = function () {
-            const fileName = newRow.querySelector('td:first-child').textContent.trim(); // Get file name from the first cell
-            const rowIndex = newRow.rowIndex - 1; // Adjust for table header
-            newRow.remove(); // Remove the row from the table
-            deleteConfirmation.style.display = 'none';
+        newFolderNameInput.value = folderName;
+        renamePopup.style.display = 'block';
 
-            // Remove the corresponding file from the uploadedFiles array
-            uploadedFiles = uploadedFiles.filter(file => file.name !== fileName);
+        const renameForm = document.getElementById('renameForm');
 
-            // Update the files section to reflect the changes
-            displayFiles(uploadedFiles);
+        function handleRenameFormSubmit(e) {
+            e.preventDefault();
+            const newName = newFolderNameInput.value.trim();
 
-            // Synchronize folder section if it exists
-            const folderName = fileName.substring(0, fileName.lastIndexOf('.')); // Extract folder name from file name
-            const folderToDelete = document.querySelector(`.folder[data-folder="${folderName}"]`);
-            if (folderToDelete) {
-                folderToDelete.remove(); // Remove the folder from the folder section
+            if (newName !== '') {
+                // Update the folder name in the tables section
+                const fileExtension = getFileIcon(getFileExtension(newName)); // Get file extension and determine icon class
+                folderNameCell.innerHTML = `<i class="fas ${fileExtension}"></i> ${newName}`;
+
+                // Update the folder name in the folders section
+                const folderElement = document.querySelector(`.folder[data-folder="${folderName}"]`);
+                if (folderElement) {
+                    folderElement.setAttribute('data-folder', newName);
+                    folderElement.querySelector('.folder-name').textContent = newName;
+                }
+
+                const fileElements = document.querySelectorAll('.file1');
+                fileElements.forEach(fileElement => {
+                    const fileNameElement = fileElement.querySelector('.file1-name');
+                    const fileName = fileNameElement.textContent;
+                     if (fileName.startsWith(folderName)) {
+                    // Update the file name
+                        fileNameElement.textContent = fileName.replace(folderName, newName);
+                        const iconElement = fileElement.querySelector('i');
+                        const fileExtension = getFileIcon(getFileExtension(newName)); // Get file extension and determine icon class
+                        iconElement.className = `fas ${fileExtension}`;
+                     }
+                });
             }
-        };
 
-        // Event listener for cancel delete button
-        cancelDeleteButton.onclick = function () {
-            deleteConfirmation.style.display = 'none';
-        };
+            renamePopup.style.display = 'none';
+            renameForm.removeEventListener('submit', handleRenameFormSubmit);
+        }
+
+        renameForm.addEventListener('submit', handleRenameFormSubmit);
+    }
+
+    // Attach click event listener to each rename button
+    renameButtons.forEach(renameButton => {
+        renameButton.addEventListener('click', handleRenameClick);
     });
 }
 
 
+
+function attachDeleteEventListener(row) {
+    const deleteButton = row.querySelector('.icon-button.delete-file');
+
+    // Function to handle the deletion process
+    function handleDeleteClick(event) {
+        const folderNameCell = this.closest('tr').querySelector('td:first-child');
+        const folderName = folderNameCell.textContent.trim();
+        const deletePopup = document.getElementById('deletePopup');
+
+        // Display the delete confirmation popup
+        deletePopup.style.display = 'block';
+
+        const confirmDeleteBtn = document.getElementById('confirmDeleteBtn');
+        const cancelDeleteBtn = document.getElementById('cancelDeleteBtn');
+
+        function confirmDelete() {
+            // Perform deletion actions here
+            // For example:
+            // 1. Remove the row from the table
+            row.remove();
+
+            // 2. Remove corresponding elements from other sections if needed
+            const folderElement = document.querySelector(`.folder[data-folder="${folderName}"]`);
+            if (folderElement) {
+                folderElement.remove();
+            }
+
+            const fileElements = document.querySelectorAll('.file1');
+            fileElements.forEach(fileElement => {
+                const fileName = fileElement.textContent;
+                if (fileName.startsWith(folderName)) {
+                    fileElement.remove();
+                }
+            });
+
+            // Hide the delete confirmation popup
+            deletePopup.style.display = 'none';
+
+            // Remove event listeners
+            confirmDeleteBtn.removeEventListener('click', confirmDelete);
+            cancelDeleteBtn.removeEventListener('click', cancelDelete);
+        }
+
+        function cancelDelete() {
+            // Hide the delete confirmation popup
+            deletePopup.style.display = 'none';
+
+            // Remove event listeners
+            confirmDeleteBtn.removeEventListener('click', confirmDelete);
+            cancelDeleteBtn.removeEventListener('click', cancelDelete);
+        }
+
+        // Add event listeners to delete and cancel buttons
+        confirmDeleteBtn.addEventListener('click', confirmDelete);
+        cancelDeleteBtn.addEventListener('click', cancelDelete);
+
+        event.preventDefault();
+    }
+
+    deleteButton.addEventListener('click', handleDeleteClick);
+}
 
 
 // Function to get current date
@@ -382,5 +498,121 @@ function handleSearch() {
         }
     });
 }
+
+
+// Sorting function for files and folders
+function sortFilesAndFolders() {
+    const filesContainer = document.querySelector('.files1');
+    const foldersContainer = document.querySelector('.folders');
+
+    const files = Array.from(filesContainer.children);
+    const folders = Array.from(foldersContainer.children);
+
+    // Sort files
+    files.sort((a, b) => {
+        const nameA = a.textContent.trim().toLowerCase();
+        const nameB = b.textContent.trim().toLowerCase();
+        return nameA.localeCompare(nameB);
+    });
+
+    // Sort folders
+    folders.sort((a, b) => {
+        const nameA = a.textContent.trim().toLowerCase();
+        const nameB = b.textContent.trim().toLowerCase();
+        return nameA.localeCompare(nameB);
+    });
+
+    // Reorder the elements in the containers
+    files.forEach(item => filesContainer.appendChild(item));
+    folders.forEach(item => foldersContainer.appendChild(item));
+}
+
+document.addEventListener('DOMContentLoaded', function() {
+    const sortByNameLink = document.getElementById('sortByName');
+    sortByNameLink.addEventListener('click', function(event) {
+        event.preventDefault(); // Prevent the default behavior of the link
+        
+        sortFilesAndFolders(); // Call the sorting function
+    });
+});
+
+
+document.addEventListener("DOMContentLoaded", function () {
+    // Enable drag and drop for the regular file container
+    enableDragAndDrop('dropdrag', '.files1');
+
+    // Enable drag and drop for the table section
+    enableDragAndDrop('tableDropZone', '#filesTable tbody');
+});
+
+function enableDragAndDrop(dropZoneId, targetContainerSelector) {
+    const dropZone = document.getElementById(dropZoneId);
+    const targetContainer = document.querySelector(targetContainerSelector);
+
+    dropZone.addEventListener('dragover', function (e) {
+        e.preventDefault();
+        dropZone.classList.add('dragover');
+    });
+
+    dropZone.addEventListener('dragleave', function () {
+        dropZone.classList.remove('dragover');
+    });
+
+    dropZone.addEventListener('drop', function (e) {
+        e.preventDefault();
+        dropZone.classList.remove('dragover');
+
+        const files = e.dataTransfer.files;
+        addFilesToTable1(files); // Call the addFilesToTable function with dropped files
+    });
+}
+
+function addFilesToTable1(files) {
+    const tableBody = document.querySelector('#filesTable tbody');
+    const filesContainer = document.querySelector('.files1');
+
+    // Get the list of existing file names in the table and files container
+    const existingFileNames = Array.from(tableBody.querySelectorAll('tr td:first-child'), td => td.textContent);
+    const existingFiles = Array.from(filesContainer.querySelectorAll('.file1-name'), span => span.textContent);
+
+    for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        const fileName = file.name;
+
+        // Check if the file name already exists in the table or files container
+        if (existingFileNames.includes(fileName) || existingFiles.includes(fileName)) {
+            console.log(`File '${fileName}' already exists.`);
+            continue; // Skip adding the file
+        }
+
+        const fileExtension = getFileIcon(getFileExtension(fileName)); // Get file extension and determine icon class
+        const fileSizeMB = (file.size / (1024 * 1024)).toFixed(2);
+
+        // Create table row
+        const tableRow = document.createElement('tr');
+        tableRow.innerHTML = `
+            <td><i class="fas ${fileExtension}"></i>${fileName}</td>
+            <td>${getCurrentDate()}</td>
+            <td>${fileSizeMB} MB</td>
+            <td>Your Name</td>
+            <td>
+                <a href="#" class="icon-button"><i class="material-icons">cloud_download</i></a>
+                <a href="#" class="icon-button delete-file"><i class="material-icons">delete</i></a>
+                <a href="#" class="icon-button rename-file"><i class="material-icons">border_color</i></a>
+            </td>
+        `;
+        tableBody.appendChild(tableRow);
+        attachRenameEventListener(tableRow);
+        attachDeleteEventListener(tableRow);
+
+        // Create file div for .files1 section
+        const fileDiv = document.createElement('div');
+        fileDiv.classList.add('file1');
+        fileDiv.innerHTML = `<i class="fas ${fileExtension}"></i><span class="file1-name">${fileName}</span>`;
+        filesContainer.appendChild(fileDiv);
+    }
+}
+
+
 
 
