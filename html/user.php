@@ -14,6 +14,7 @@ include '../connection/verifier.php';?>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="../css/user_css.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 
     <title>Admin Panel</title>
 </head>
@@ -133,7 +134,7 @@ include '../connection/verifier.php';?>
                             echo "<td>" . $row['phone'] . "</td>";
                             echo "<td>" . $row['email'] . "</td>";
                             echo "<td>";
-                            echo " <button type='button' class='btn btn-primary btn-sm' data-toggle='modal' data-target='#editModal'>Edit</button>";
+                            echo " <button type='button' class='btn btn-primary btn-sm edit-btn' data-toggle='modal' data-target='#editModal' data-user-id='" . $row['id'] . "'>Edit</button>";
                             echo "<button type='submit' class='btn btn-danger btn-sm' name='delete_user' onclick='return confirmDelete();'>Delete</button>";
                             echo "<input type='hidden' name='id' value='" . $row['id'] . "'>";
                             echo "</td>";
@@ -201,7 +202,7 @@ include '../connection/verifier.php';?>
             </div>
         </div>
     </div>
-   <!--Edit Modal-->
+    <!--Edit Modal-->
     <div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -213,33 +214,32 @@ include '../connection/verifier.php';?>
                 </div>
                 <div class="modal-body">
                     <div class="container">
-                        
                         <form>
-                        <div class="form-group">
-                            <label for="id">ID</label>
-                            <input type="text" class="form-control" id="id" placeholder="Enter ID">
-                        </div>
-                        <div class="form-group">
-                            <label for="name">Name</label>
-                            <input type="text" class="form-control" id="name" placeholder="Enter Name">
-                        </div>
-                        <div class="form-group">
-                            <label for="job_title">Job Title</label>
-                            <input type="text" class="form-control" id="job_title" placeholder="Enter Job Title">
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Phone</label>
-                            <input type="text" class="form-control" id="phone" placeholder="Enter Phone">
-                        </div>
-                        <div class="form-group">
-                            <label for="email">Email</label>
-                            <input type="email" class="form-control" id="email" placeholder="Enter Email">
-                        </div>
+                            <div class="form-group">
+                                <label for="edit_id">ID</label>
+                                <input type="text" class="form-control" id="edit_id" placeholder="Enter ID" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="edit_name">Name</label>
+                                <input type="text" class="form-control" id="edit_name" placeholder="Enter Name">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit_job_title">Job Title</label>
+                                <input type="text" class="form-control" id="edit_job_title" placeholder="Enter Job Title">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit_phone">Phone</label>
+                                <input type="text" class="form-control" id="edit_phone" placeholder="Enter Phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="edit_email">Email</label>
+                                <input type="email" class="form-control" id="edit_email" placeholder="Enter Email">
+                            </div>
                         </form>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-info" data-dismiss="modal">Save Changes</button>
+                    <button type="button" class="btn btn-info" id="saveChangesBtn">Save Changes</button>
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                 </div>
             </div>
@@ -256,4 +256,6 @@ include '../connection/verifier.php';?>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
         <script src="/js/user_js.js"></script>
         <script src="../js/requests.js"></script>
+        <script src="../js/edit.js"></script>
+        <script src="../js/update_user.js"></script>
 </html>
