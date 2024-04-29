@@ -489,7 +489,32 @@ nav.close ~ .dashboard .top{
             background-color: #f0f0f0;
         }
 
-
+    
+        .context-menu2 {
+            display: none;
+            position: absolute;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            padding: 5px 0;
+        }
+        
+            .context-menu2 ul {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+        
+            }
+        
+            .context-menu2 li {
+                padding: 8px 15px;
+                cursor: pointer;
+            }
+        
+                .context-menu2 li:hover {
+                    background-color: #f0f0f0;
+                }
+        
 .popup {
     display: none;
     position: fixed;
@@ -822,15 +847,4 @@ button {
     font-size: 24px;
     border-color: #DDD;
 }
-.drag-over {
-    border: 2px dashed #0E4BF1; 
-}
 
-.drag-over {
-    border: 2px dashed #0E4BF1; 
-}
-
-.drag-icon {
-    margin-right: 5px; 
-    color: #0E4BF1; 
-}

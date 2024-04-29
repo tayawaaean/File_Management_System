@@ -11,7 +11,8 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <!-- Example Font Awesome CDN link -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Internal CSS -->
     
@@ -45,6 +46,10 @@
                 <li><a href="personal_info.php">
                     <i class="material-symbols-outlined">person</i>
                     <span class="link-name">Personal Info</span>
+                </a></li>
+                <li><a href="../inbox/inbox.html">
+                    <i class="material-symbols-outlined">inbox</i>
+                    <span class="link-name">Inbox</span>
                 </a></li>
             </ul>
             
@@ -87,7 +92,7 @@
             </div>
 
             <!-- Search Box and Sort Select -->
-<div class="container">
+<div class="container" id="dropdrag">
     <div class="bottom-search">
         <div class="search">
             <i class="uil uil-search"></i>
@@ -100,7 +105,7 @@
                     <i class="material-symbols-outlined">upload</i>
                 </button>
                     <div class="dropdown-content">
-                        <button id="addFolderBtn" class="add-folder-icon">
+                        <button id="addFolderBtn" class="add-folder-icon" >
                             <i class="material-symbols-outlined">create_new_folder</i>
                             <span class="text">Create Folder</span>
                         </button>
@@ -138,10 +143,10 @@
     </div>
     <div id="renamePopup" class="popup" style="display: none;">
         <form id="renameForm">
-            <label for="newFolderName" class="label">New Folder Name:</label>
+         <label for="newFolderName" class="label">New Folder Name:</label>
             <input type="text" id="newFolderName" name="newFolderName" class="input" required>
             <button type="submit" id="confirmRenameBtn">Rename</button>
-            <button type="button" id="cancelRenameBtn" class="button" onclick="cancelFolderCreation()">Cancel</button>
+            <button type="button" id="cancelRenameBtn" class="button">Cancel</button>
         </form>
     </div>
 
@@ -156,7 +161,7 @@
         </div>
     </div>
     <div class="separation-text" id="seperationText">Folder</div>
-        <div class="folder-container" id="folderGrid" ondrop="drop(event, 'folder')" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
+        <div class="folder-container" id="folderGrid"> 
             <div class="folders">
                 <div class="folder">Folder 1</div>
                     <!-- Add more folder elements as needed -->
@@ -166,14 +171,9 @@
             <!-- Separation text -->
             <div class="separation-text" id="TextFiles">Files</div>
             <!-- File container -->
-                <div class="file-container" id="fileGrid" ondrop="drop(event, 'file')" ondragover="allowDrop(event)" ondragenter="dragEnter(event)" ondragleave="dragLeave(event)">
+                <div class="file-container" id="fileGrid"> 
                     <div class="files1">
-                        <div class="file1">
-                            <span class="file1-name">Your File Name Here</span>
-                        </div>
-                        <div class="file1">
-                            <span class="file1-name">Your.pdf</span>
-                        </div>
+                      
                     <!-- Add more file elements as needed -->
                     </div>
                 </div>
@@ -204,19 +204,29 @@
         <!-- Context menu template -->
         <div id="contextMenu" class="context-menu">
             <ul>
-                <li id="renameFolder"><i class='material-symbols-outlined'>border_color</i>Rename</li>
+                <li id="renameFolder" class="icon-button rename-file">
+                      <i class="material-symbols-outlined">border_color</i>
+                        <span>Rename</span>
+                </li>
+
+
                 <li id="copyFolder"><i class="material-symbols-outlined">content_copy</i>Copy</li>
                 <li id="pasteFolder"><i class="material-symbols-outlined">content_paste</i>Paste</li>
-                <li id="deleteFolder"><i class="material-symbols-outlined">delete</i>Delete</li>
+                <li id="deleteFolder" ><i class="material-symbols-outlined">delete</i>Delete</li>
                 <li id="pasteFolder"><i class="material-symbols-outlined">download</i>Download</li>
+            </ul>
+        </div>
+
+        <div id="contextMenu2" class="context-menu2">
+            <ul>  
+                <li onclick="document.getElementById('fileUpload').click();"><i class='material-symbols-outlined'>upload_file</i>Upload File</li>
+                <li id="copyFolder"><i class="material-symbols-outlined">create_new_folder</i>Create Folder</li>
+                <li id="pasteFolder"><i class="material-symbols-outlined">content_paste</i>Paste</li>            
             </ul>
         </div>
 
         <input type="file" id="fileUpload" style="display: none;" onchange="handleFileUpload();">
 
-
-        <!-- Modify your button to trigger file upload -->
-        </div>
     </section>
 
 </body>
