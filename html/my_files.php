@@ -3,6 +3,34 @@ session_start();
 include '../connection/connection.php';
 include '../connection/login_checker.php';
 ?>
+<?php
+// Check if the user is logged in
+if (!isset($_SESSION['username'])) {
+    // Redirect to login page or handle unauthorized access
+    header("Location: login.php");
+    exit();
+}
+
+// Include necessary files
+include '../connection/connection.php';
+include '../connection/login_checker.php';
+
+// Get the username from the session
+$username = $_SESSION['username'];
+
+// Fetch folder names from the database
+$stmt = $conn->prepare("SELECT folder_name FROM folders WHERE username = ?");
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Store fetched folder names in an array
+$folders = [];
+while ($row = $result->fetch_assoc()) {
+    $folders[] = $row['folder_name'];
+}
+$stmt->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -187,13 +215,18 @@ include '../connection/login_checker.php';
         </div>
     </div>
     <div class="separation-text" id="seperationText">Folder</div>
-        <div class="folder-container" id="folderGrid"> 
-            <div class="folders">
-                <div class="folder">Folder 1</div>
-                    <!-- Add more folder elements as needed -->
-                    <!-- Folders will be dynamically added here -->
-                </div>
-            </div>
+    <div class="folder-container" id="folderGrid"> 
+    <div class="folders">
+    <?php foreach ($folders as $folder): ?>
+        <a href="my_files.php">
+            <div class="folder"><?php echo htmlspecialchars($folder); ?></div>
+        </a>
+    <?php endforeach; ?>
+</div>
+
+</div>
+
+        </div>
             <!-- Separation text -->
             <div class="separation-text" id="TextFiles">Files</div>
             <!-- File container -->
