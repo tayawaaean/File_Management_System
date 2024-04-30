@@ -218,12 +218,10 @@ $stmt->close();
     <div class="folder-container" id="folderGrid"> 
     <div class="folders">
     <?php foreach ($folders as $folder): ?>
-        <a href="my_files.php">
+        <a href="my_files.php?folder=<?php echo urlencode($folder); ?>">
             <div class="folder"><?php echo htmlspecialchars($folder); ?></div>
         </a>
     <?php endforeach; ?>
-</div>
-
 </div>
 
         </div>
