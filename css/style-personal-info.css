@@ -368,8 +368,8 @@ nav.close ~ .dashboard .top{
 
 .container {
     /* border: 1px solid black; */
-    flex-basis: calc(50% - 20px); /* 50% width with margin included */
-    background-color: white;
+    flex-basis: calc(50% - 20px);
+    background-color: var(--panel-color);
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -389,7 +389,7 @@ nav.close ~ .dashboard .top{
     border-radius: 25px;
     height: 100%;
     width: 150px; /* Adjust width as needed */
-    color: var(--text-color);
+    color: var(--black-light-color);
     font-size: 15px;
     font-weight: 400;
     outline: none;

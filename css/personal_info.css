@@ -21,7 +21,7 @@ nav{
 .first-side {
     padding: 3%;
     grid-area: first-side;
-    background-color: white ;
+    background-color: var(--panel-color);
     border-radius: 2%;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.1), 
         -5px -5px 10px rgba(255, 255, 255, 0.6);
@@ -29,7 +29,7 @@ nav{
 .second-side {
     padding: 3%;
     grid-area: second-side;
-    background-color: white ;
+    background-color: var(--panel-color);
     border-radius: 2%;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.1), 
         -5px -5px 10px rgba(255, 255, 255, 0.6);
@@ -38,7 +38,7 @@ nav{
 .third-side {
     padding: 3%;
     grid-area: third-side;
-    background-color: white ;
+    background-color: var(--panel-color);
     border-radius: 2%;
     box-shadow: 5px 5px 10px rgba(0,0,0,0.1), 
         -5px -5px 10px rgba(255, 255, 255, 0.6);
@@ -49,11 +49,13 @@ input[type='text']{
     border: none;
     font-size:85%;
     margin-bottom: 2%;
+     background-color: var(--panel-color);
     color: rgba(65, 92, 229, 0.84);
 }
 .user-label{
     opacity: .7;
     display: flex;
+    color: var(--black-light-color);
 }
 .content-info{
     display: flex;
@@ -79,6 +81,7 @@ input[type='text']{
 }
 .textheader{
     font-weight: bold;
+    color: var(--black-light-color);
 }
 .cancel-btn i{
     text-decoration: none;
@@ -105,7 +108,7 @@ input[type='text']{
     overflow: hidden;
 }
 .white-bg {
-    background-color: white ;
+    background-color: var(--panel-color);
     width: 100%;
     height: 100px;
     display: flex;
@@ -118,6 +121,10 @@ input[type='text']{
 .white-bg .userName{
     font-weight: bold;
     font-size: 18px;
+    color: var(--black-light-color);
+}
+.white-bg .userTitle{
+    color: var(--black-light-color);
 }
 .image-user img{
     position: absolute;
@@ -127,8 +134,17 @@ input[type='text']{
     margin-top: -7%;
     border: 5px solid rgb(46, 66, 166);
     padding: .3%;
-    background-color: white;
+    background-color: var(--panel-color);
     border-radius: 50%;
+}
+.container {
+    /* border: 1px solid black; */
+    flex-basis: calc(50% - 20px);
+    background-color: var(--panel-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 3%;
 }
 
 
@@ -145,6 +161,7 @@ input[type='text']{
         display: grid;
         gap: 5px;
         margin: 14px;
+        background-color: var(--panel-color);
         grid-template-columns: repeat(3, 1fr);
         grid-template-rows: auto;
         grid-template-areas: 
