@@ -34,6 +34,25 @@ if (!file_exists($sourceFolderPath)) {
 
     if ($insertResult) {
         echo "Folder details inserted into the database.";
+        
+        // Fetch author's name
+        $authorQuery = "SELECT name FROM users WHERE username='$username'";
+        $authorResult = mysqli_query($conn, $authorQuery);
+        $authorRow = mysqli_fetch_assoc($authorResult);
+        $author = ($authorRow) ? $authorRow['name'] : "Unknown";
+
+        // Insert entry into activity_log table for folder creation
+        $action = "Created A New Folder";
+        $description = $folderName;
+
+        $activityQuery = "INSERT INTO activity_log (author, job_title, DateTime, Action, description) VALUES ('$author', 'Employee', NOW(), '$action', '$description')";
+        $activityResult = mysqli_query($conn, $activityQuery);
+
+        if ($activityResult) {
+            echo "Activity log entry created successfully";
+        } else {
+            echo "Error creating activity log entry: " . mysqli_error($conn);
+        }
     } else {
         echo "Error inserting folder details into the database: " . mysqli_error($conn);
     }

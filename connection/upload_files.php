@@ -46,7 +46,29 @@ if (isset($_FILES['fileInput'])) {
     $stmt->bind_param("ssss", $encodedFileName, $encodedFileSize, $username, $folderName);
     
     if ($stmt->execute()) {
-        echo "File uploaded successfully";
+        // Fetch author's name from users table
+        $authorUsername = $username;
+        $authorResult = $conn->query("SELECT name FROM users WHERE username='$authorUsername'");
+        if ($authorResult && $authorResult->num_rows > 0) {
+            $author = $authorResult->fetch_assoc()['name'];
+        } else {
+            $author = "Unknown";
+        }
+
+        // Insert entry into activity_log table
+        $action = "Uploaded a new file";
+        $description = "$folderName";
+        $job_title = 'Employee'; // You need to fetch the job title from the users table
+
+        $activityQuery = "INSERT INTO activity_log (Author, job_title, DateTime, Action, Description) VALUES (?, ?, NOW(), ?, ?)";
+        $activityStmt = $conn->prepare($activityQuery);
+        $activityStmt->bind_param("ssss", $author, $job_title, $action, $description);
+        
+        if ($activityStmt->execute()) {
+            echo "File uploaded successfully";
+        } else {
+            echo "Error inserting activity log";
+        }
     } else {
         echo "Error uploading file";
     }
