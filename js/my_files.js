@@ -497,7 +497,6 @@ function handleSearch() {
     });
 }
 
-
 // Sorting function for files and folders
 function sortFilesAndFolders() {
     const filesContainer = document.querySelector('.files1');
@@ -610,3 +609,5 @@ function addFilesToTable1(files) {
         filesContainer.appendChild(fileDiv);
     }
 }
+
+

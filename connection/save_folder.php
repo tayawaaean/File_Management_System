@@ -1,5 +1,6 @@
 <?php
 session_start();
+date_default_timezone_set('Asia/Manila');
 
 // Check if the user is logged in
 if (!isset($_SESSION['username'])) {
