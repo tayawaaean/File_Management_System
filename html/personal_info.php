@@ -79,25 +79,34 @@ include '../connection/login_checker.php';
                 <i class="uil uil-search"></i>
                 <input type="text" placeholder="Search anything...">
             </div>
-            
-            <img src="../img/Catiwa, Kenric.jpeg" alt="">
+            <img  src="../img/Catiwa, Kenric.jpeg" alt="tite">
         </div>
         <div class="container">
     <div class="header">
         <div class="background">
-            <img class="image-background-profile" src="../img/background_temp.jpg" alt="background-lang">
+            <img style="z-index: 0;" class="image-background-profile" src="../img/background_temp.jpg" alt="background-lang">
             <div class="profile-image">
                 <div class="image-user">
-                    <img src="../img/Catiwa, Kenric.jpeg" alt="">
+                    <img id="profile-image-user" src="../img/Catiwa, Kenric.jpeg" alt="">
+                </div>
+                <div class="change-profile">
+                        <button class="toggleUpload" 
+                            onclick="toggleUploadButton()" id="toggleUpload">
+                            <span class="material-symbols-outlined">photo_camera</span>
+                            <span class="editText">Edit</span>
+                            <input type="file" accept="image/*" id="imageInput" style="display: none;">
+                        </button>
+                        <button onclick="triggerFileInput()" class="uploadImage" 
+                        style="display: none;" id="uploadImage">Upload Photo
+                        </button>
                 </div>
             </div>
-            <div class="white-bg">
+            <div class="white-bg" id="white-bg">
                 <span class="userName" id="userName"><?php echo $user['name']; ?></span>
                 <span class="userTitle" id="work-title"><?php echo $user['job_title']; ?></span>
             </div>
         </div>
     </div>
-
     <!-- First Side -->
     <div class="first-side">
         <div class="operation">

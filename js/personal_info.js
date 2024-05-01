@@ -173,5 +173,65 @@ document.getElementById("save-btn-work").addEventListener("click", function() {
     // Send edited data to the server via AJAX for updating
     // Same as above, but adjust the endpoint and input data accordingly
 });
+var toggleUploadButtonElement = document.getElementById("toggleUpload");
+var uploadImageElement = document.getElementById("uploadImage");
+var profiles = document.getElementById("profile-image-user");
 
+function toggleUploadButton() {
+    uploadImageElement.style.display = "block";
+    adjustMargin();
+    window.addEventListener('resize', adjustMargin);
+}
 
+function cancelToggle() {
+    uploadImageElement.style.display = "none";
+    defaultMargin();
+    window.addEventListener('resize', defaultMargin);
+}
+
+// Function to handle file input change
+function handleFileInput(event) {
+    var file = event.target.files[0];
+    var reader = new FileReader();
+
+    reader.onload = function(e) {
+        // Set the source of the profile image to the data URL of the selected image
+        profiles.src = e.target.result;
+    };
+
+    reader.readAsDataURL(file);
+}
+
+// Trigger file input click
+function triggerFileInput() {
+    imageInput.click();
+}
+
+// Get the file input element
+var imageInput = document.createElement("input");
+imageInput.type = "file";
+imageInput.accept = "image/*";
+imageInput.style.display = "none";
+imageInput.addEventListener("change", handleFileInput);
+
+// Add event listener to the document to handle clicks
+document.addEventListener("click", function(event) {
+    var target = event.target;
+    // Check if the clicked element is not the toggleUploadButton or uploadImageElement
+    if (target !== toggleUploadButtonElement && target !== uploadImageElement && !toggleUploadButtonElement.contains(target) && !uploadImageElement.contains(target)) {
+        cancelToggle();
+    }
+});
+
+function adjustMargin(){
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    if (mediaQuery.matches){
+        document.getElementById("white-bg").style.marginTop = '40px';
+    }
+}
+function defaultMargin(){
+    const mediaQuery = window.matchMedia('(max-width: 768px)');
+    if (mediaQuery.matches){
+        document.getElementById("white-bg").style.marginTop = '';
+    }
+}
