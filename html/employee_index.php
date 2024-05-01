@@ -88,54 +88,57 @@ include '../connection/connection.php';?>
                 <hr>
 
                 <div class="boxes">
-                    <div class="box box1">
-                        <i class='bx bxs-inbox'></i>
-                        <span class="text">
-                            <?php 
-                                $result = $conn->query("SELECT COUNT(*) AS total FROM inbox;");
-                                $row = $result->fetch_assoc();
-                                $totalInbox = $row['total'];
-                            ?>
-                            <span class="number"><?php echo $totalInbox?></span>
-                            <span class="text">Inbox</span>
-                        </span>
-                    </div>
                     <div class="box box2">
-                        <i2 class="material-symbols-outlined">description</i2>
-                        <span class="text">
-                            <?php 
-                                $result = $conn->query("SELECT COUNT(*) AS total FROM files;");
+                    <i2 class="material-symbols-outlined">description</i2>
+                    <span class="text">
+                        <?php 
+                            include '../connection/connection.php';
+
+                            $username = $_SESSION['username'];
+
+                            // Query to count total files for the logged-in user
+                            $query = "SELECT COUNT(*) AS total FROM files WHERE owner = '$username'";
+                            $result = $conn->query($query);
+
+                            if ($result) {
                                 $row = $result->fetch_assoc();
                                 $totalFiles = $row['total'];
-                            ?>
-                            <span class="number"><?php echo $totalFiles?></span>
-                            <span class="text">Total Files</span>
-                        </span>
-                    </div>
-                    <div class="box box3">
-                        <i class="material-symbols-outlined">folder_open</i>
-                        <span class="text">
-                            <?php 
-                                $result = $conn->query("SELECT COUNT(*) AS total FROM folders;");
-                                $row = $result->fetch_assoc();
-                                $totalFolders = $row['total'];
-                            ?>
-                            <span class="number"><?php echo $totalFolders?></span>
-                            <span class="text">Total Folders</span>
-                        </span>
-                    </div>
-                    <div class="box box4">
-                        <i2 class="material-symbols-outlined">unarchive</i2>
-                        <span class="text">
-                            <?php 
-                                $result = $conn->query("SELECT COUNT(*) AS total FROM sent_files;");
-                                $row = $result->fetch_assoc();
-                                $totalSentFiles = $row['total'];
-                            ?>
-                            <span class="number"><?php echo $totalSentFiles?></span>
-                            <span class="text">Sent Files</span>
-                        </span>
-                    </div>
+                            } else {
+                                // Error handling if the query fails
+                                $totalFiles = "N/A";
+                            }
+                        ?> 
+                        <span class="number"><?php echo $totalFiles?></span>
+                        <span class="text">Total Files</span>
+                    </span>
+                </div>
+                <div class="box box3">
+                <i class="material-symbols-outlined">folder_open</i>
+                <span class="text">
+                    <?php 
+                        // Establish connection to the database
+                        include '../connection/connection.php';
+
+                        // Assuming $_SESSION['username'] contains the username
+                        $username = $_SESSION['username'];
+
+                        // Query to count total folders for the logged-in user
+                        $query = "SELECT COUNT(*) AS total FROM folders WHERE username = '$username'";
+                        $result = $conn->query($query);
+
+                        if ($result) {
+                            $row = $result->fetch_assoc();
+                            $totalFolders = $row['total'];
+                        } else {
+                            // Error handling if the query fails
+                            $totalFolders = "N/A";
+                        }
+                    ?>
+                    <span class="number"><?php echo $totalFolders?></span>
+                    <span class="text">Total Folders</span>
+                </span>
+            </div>
+
                 </div>
             </div>
 

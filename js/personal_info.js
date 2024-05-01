@@ -130,7 +130,7 @@ document.getElementById("save-btn-contact").addEventListener("click", function()
 
     // Send edited data to the server via AJAX for updating
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "update_user_info.php", true);
+    xhr.open("POST", "../connection/update_user_info.php", true);
     xhr.setRequestHeader("Content-Type", "application/json");
    
     xhr.send(JSON.stringify(editedData));
@@ -148,7 +148,7 @@ document.getElementById("save-btn-info").addEventListener("click", function() {
     };
     
     var xhr = new XMLHttpRequest();
-    xhr.open("POST", "update_user_info.php", true);
+    xhr.open("POST", "../connection/update_user_info.php", true);
     xhr.setRequestHeader("Content-Type", "application/json");
    
     xhr.send(JSON.stringify(editedData));
@@ -166,7 +166,7 @@ document.getElementById("save-btn-work").addEventListener("click", function() {
         // Add other fields as needed
     };
   var xhr = new XMLHttpRequest();
-    xhr.open("POST", "update_user_info.php", true);
+    xhr.open("POST", "../connection/update_user_info.php", true);
     xhr.setRequestHeader("Content-Type", "application/json");
   
     xhr.send(JSON.stringify(editedData));
