@@ -204,53 +204,53 @@ include '../connection/connection.php';?>
                                     </tr>
                                 </thead>
                                <tbody>
-    <?php 
-    // Get the username from the session
-    $username = $_SESSION['username'];
+                                    <?php 
+                                    // Get the username from the session
+                                    $username = $_SESSION['username'];
 
-    // Retrieve the name from the users table based on the username
-    $nameQuery = $conn->query("SELECT name FROM users WHERE username='$username'");
-    if ($nameQuery && $nameQuery->num_rows > 0) {
-        $name = $nameQuery->fetch_assoc()['name'];
+                                    // Retrieve the name from the users table based on the username
+                                    $nameQuery = $conn->query("SELECT name FROM users WHERE username='$username'");
+                                    if ($nameQuery && $nameQuery->num_rows > 0) {
+                                        $name = $nameQuery->fetch_assoc()['name'];
 
-        // Fetch activity log entries based on the author's name
-        $result = $conn->query("SELECT * FROM activity_log WHERE Author = '$name'");
-        while ($row = $result->fetch_assoc()): 
-            $dateTime = $row['DateTime'];
-            $date = date("F j, Y", strtotime($dateTime));
-            $time = date("h:i A", strtotime($dateTime));
-            
-    ?>
-        <tr>
-            <td><?php echo $row['Author']?></td>
-            <td><?php echo date('F j, Y', strtotime($row['DateTime'])); ?></td>
-            <td><?php echo $time?></td>
-            <td><?php echo $row['Action']?></td>
-            <td>
-            <div class="description">
-            <?php if($row['Action'] === "New User Approved") { ?>
-                    <?php echo 'You ', 'accepted' ,' ',$row['Description'],' ','to be a new user.'?>
-                    <?php } else if ($row['Action'] === "New User Denied") {?>
-                    <?php echo 'You ','denied',' ',$row['Description'],' ','to be a new user.'?>
-                    <?php } else if ($row['Action'] === "Profile Updated") {?>
-                    <?php echo 'You ','updated your personal information.'?>
-                    <?php } else if ($row['Action'] === "Uploaded a new file") {?>
-                    <?php echo 'You ','uploaded a document in ',$row['Description'],' folder.'?>
-                    <?php } else if ($row['Action'] === "Uploaded Multiple Files") {?>
-                    <?php echo 'You ','uploaded multipe files in ',$row['Description'],' folder.'?>
-                    <?php } else if ($row['Action'] === "Created A New Folder") {?>
-                    <?php echo 'You ','created ',$row['Description'],' folder.'?>
-                    <?php } else if ($row['Action'] === "Document Deleted") {?>
-                    <?php echo 'You ','deleted the document',' ',$row['Description'],'.'?>
-                    <?php } else if ($row['Action'] === "Document Upload") {?>
-                    <?php echo 'You ','uploaded the document',' ',$row['Description'],'.'?>
-                    <?php }?>
-                </div>
-            </td>
-        </tr>
-        <?php endwhile; ?>
-        <?php } // <-- Missing closing bracket for if block ?>
-    </tbody>
+                                        // Fetch activity log entries based on the author's name
+                                        $result = $conn->query("SELECT * FROM activity_log WHERE Author = '$name'");
+                                        while ($row = $result->fetch_assoc()): 
+                                            $dateTime = $row['DateTime'];
+                                            $date = date("F j, Y", strtotime($dateTime));
+                                            $time = date("h:i A", strtotime($dateTime));
+                                            
+                                    ?>
+                                        <tr>
+                                            <td><?php echo $row['Author']?></td>
+                                            <td><?php echo date('F j, Y', strtotime($row['DateTime'])); ?></td>
+                                            <td><?php echo $time?></td>
+                                            <td><?php echo $row['Action']?></td>
+                                            <td>
+                                            <div class="description">
+                                            <?php if($row['Action'] === "New User Approved") { ?>
+                                                    <?php echo 'You ', 'accepted' ,' ',$row['Description'],' ','to be a new user.'?>
+                                                    <?php } else if ($row['Action'] === "New User Denied") {?>
+                                                    <?php echo 'You ','denied',' ',$row['Description'],' ','to be a new user.'?>
+                                                    <?php } else if ($row['Action'] === "Profile Updated") {?>
+                                                    <?php echo 'You ','updated your personal information.'?>
+                                                    <?php } else if ($row['Action'] === "Uploaded a new file") {?>
+                                                    <?php echo 'You ','uploaded a document in ',$row['Description'],' folder.'?>
+                                                    <?php } else if ($row['Action'] === "Uploaded Multiple Files") {?>
+                                                    <?php echo 'You ','uploaded multipe files in ',$row['Description'],' folder.'?>
+                                                    <?php } else if ($row['Action'] === "Created A New Folder") {?>
+                                                    <?php echo 'You ','created ',$row['Description'],' folder.'?>
+                                                    <?php } else if ($row['Action'] === "Document Deleted") {?>
+                                                    <?php echo 'You ','deleted the document',' ',$row['Description'],'.'?>
+                                                    <?php } else if ($row['Action'] === "Document Upload") {?>
+                                                    <?php echo 'You ','uploaded the document',' ',$row['Description'],'.'?>
+                                                    <?php }?>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        <?php endwhile; ?>
+                                        <?php } // <-- Missing closing bracket for if block ?>
+                                    </tbody>
 
                             </table>
                         </div>
