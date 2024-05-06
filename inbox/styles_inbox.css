@@ -1,77 +1,86 @@
-body{
+/* Reset default browser styles */
+* {
     margin: 0;
-    height: 100vh;
-    overflow: hidden;
-}
-header {
-    background-color: #333;
-    color: #fff;
-    padding: 10px 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
+/* Basic styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f2f2f2;
+}
 
-
-/* ==========================Navbar */
-
-.nav_bar {
+.inbox {
     display: flex;
-    align-items: center;
+    height: 100vh;
 }
 
-.inbox-icon {
-    margin-left: 25px;
-    font-size: 30px; 
-}
 
-.inbox-text {
-    margin-left: 10px; 
-    font-size: 30px;
-}
-
-/* ============================ inbox frame */
-.inbox_frame {
-    display: flex; 
-    height: calc(100vh - 40px); 
-    width: 100%; 
-    overflow: hidden; 
-    
-}
-
-.inbox_contents {
-    flex: 0 0 35%; 
-    background-color: #f0f0f0; 
-    border-right: 3px solid #757575;
+.messages {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto; /* Enable scrolling if content exceeds container */
 }
 
 .message {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+.email-header {
+    background-color: #f0f0f0;
+    padding: 10px;
+    border-bottom: 1px solid #cfcfcf;
+    display: flex;
+    align-items: center;
+    outline: 1px solid transparent; 
+    transition: outline-color 0.3s ease; 
     cursor: pointer; 
-    margin-bottom: 10px; 
-    border-bottom: 1px solid #a3a3a3;
-    padding: 12px;
+    border-radius: 2px;
 }
 
-.inbox_message_name{
-    font-size: 25px;
-    margin: 0px 0px 10px 0px;
+.email-header:hover {
+    outline-color: #a0a0a0; 
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.inbox_message_title{
-    font-size: 20px;
-    margin: 0px 0px 0px 0px;
+
+.email-header .sender {
+    font-weight: bold;
+    flex: 1;
 }
 
-.inbox_message_preview{
-    color: rgb(107, 107, 107);
-    margin: 0px 0px 0px 0px;
+.email-header .subject {
+    flex: 3;
+    margin: 0 10px;
 }
 
-/* =========================== Receive Frame */
-.receive_frame {
-    flex: 0 0 65%; 
-    background-color: #e0e0e0; 
-    padding: 20px; 
+.email-header .date {
+    flex: 1;
+    text-align: right;
 }
 
-.message-content {
-    display: none; 
+
+.email-header-options {
+    border-bottom: 1px solid #7e7e7e; 
+    padding: 10px; 
+}
+
+
+
+/* Media query for responsiveness */
+@media (max-width: 768px) {
+    .inbox {
+        flex-direction: column;
+    }
+
+    .sidebar {
+        width: 100%;
+    }
+
+    .messages {
+        width: 100%;
+    }
 }

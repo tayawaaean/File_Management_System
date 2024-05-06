@@ -1,0 +1,79 @@
+
+body{
+    background-color: rgb(212, 212, 212)
+}
+
+nav{
+    grid-area: nav;
+}
+.dashboard{
+    grid-area: dashboard;
+}
+
+.container {
+    /* border: 1px solid black; */
+    flex-basis: calc(50% - 20px);
+    background-color: var(--panel-color);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 3%;
+}
+
+/* ========================= INBOX CSS*/
+
+.inbox {
+    display: flex;
+    height: 100vh;
+}
+
+.email-header {
+    padding: 10px;
+    border-bottom: 1px solid #cfcfcf;
+    display: flex;
+    align-items: center;
+    outline: 1px solid transparent; 
+    transition: outline-color 0.3s ease; 
+    cursor: pointer; 
+    border-radius: 2px;
+}
+
+.email-header:hover {
+    outline-color: #a0a0a0; 
+    box-shadow: 1px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+
+.email-header .sender {
+    font-weight: bold;
+    flex: 1;
+}
+
+.email-header .subject {
+    flex: 3;
+    margin: 0 10px;
+}
+
+.email-header .date {
+    flex: 1;
+    text-align: right;
+}
+.messages {
+    flex-grow: 1; /* This makes the .messages div grow to fill available space */
+    overflow: auto; /* Add scrollbar if content overflows */
+}
+
+.checkbox-container{
+    margin-right: 5px;
+}
+
+.email-header-options {
+    border-bottom: 1px solid #7e7e7e; 
+    padding: 10px; 
+}
+
+@media screen and (max-width: 1280px) {
+    .change-profile{
+        margin-left: 110px;
+    }
+}
