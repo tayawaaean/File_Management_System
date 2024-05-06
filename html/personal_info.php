@@ -49,6 +49,10 @@ include '../connection/login_checker.php';
                     <i class="material-symbols-outlined">person</i>
                     <span class="link-name">Personal Info</span>
                 </a></li>
+                <li><a href="inbox.php">
+                    <i class="material-symbols-outlined">person</i>
+                    <span class="link-name">Inbox</span>
+                </a></li>
             </ul>
             
             <ul class="logout-mode">
