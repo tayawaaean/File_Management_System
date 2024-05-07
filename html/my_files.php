@@ -16,6 +16,8 @@ include '../connection/login_checker.php';
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <!-- Example Font Awesome CDN link -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
@@ -393,17 +395,23 @@ function uploadFolder() {
                                     // Decode the file name and file size from binary
                                     $decodedFileName = base64_decode($row['file_name']);
                                     $decodedFileSize = base64_decode($row['file_size']);
-
+                                
                                     // Output the file details in the table rows
                                     echo "<tr>";
                                     echo "<td>$decodedFileName</td>";
                                     echo "<td>{$row['date_time']}</td>";
                                     echo "<td>$decodedFileSize</td>";
                                     echo "<td>{$row['folder_name']}</td>";
-                                    // Add action buttons or links as needed
-                                    echo "<td>Action buttons or links</td>";
+                                    echo "<td>";
+                                    // Add download button with icon
+                                    echo "<a href='../connection/download.php?file_id={$row['id']}' class='btn btn-primary'><i class='bi bi-cloud-download'></i></a>";
+                                    // Add edit button with icon
+                                    echo "<a href='edit.php?file_id={$row['id']}' class='btn btn-warning'><i class='bi bi-pencil'></i></a>";
+                                    // Add delete button with icon
+                                    echo "<a href='../connection/delete.php?file_id={$row['id']}' class='btn btn-danger'><i class='bi bi-trash'></i></a>";
+                                    echo "</td>";
                                     echo "</tr>";
-                                }
+                                }    
                                 ?>
 
                         </tbody>

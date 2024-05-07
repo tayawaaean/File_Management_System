@@ -85,6 +85,10 @@ if (!empty($_FILES['folderInput']['name'][0])) {
     } else {
         echo "Error inserting activity log";
     }
+
+    // Redirect back to the page after successful file upload
+    header("Location: ../html/my_files.php");
+    exit();
 } else {
     echo "No files uploaded";
 }

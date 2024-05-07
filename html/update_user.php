@@ -8,7 +8,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $phone = $_POST['phone'];
     $email = $_POST['email'];
 
-    $stmt = $conn->prepare("UPDATE users SET name=?, job_title=?, phone=?, email=? WHERE id=?");
+    $stmt = $conn->prepare("UPDATE users SET name=?, user_type=?, phone=?, email=? WHERE id=?");
     $stmt->bind_param("ssssi", $name, $job_title, $phone, $email, $id);
 
     if ($stmt->execute()) {

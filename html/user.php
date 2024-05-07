@@ -111,7 +111,7 @@ include '../connection/verifier.php';?>
                         <th>Profile Picture</th>
                         <th>ID#</th>
                         <th>Name</th>
-                        <th>Position</th>
+                        <th>User Type</th>
                         <th>Contact Number</th>
                         <th>Email</th>
                         <th>Action</th>
@@ -130,7 +130,7 @@ include '../connection/verifier.php';?>
                             echo "<td><img src='../img/Catiwa, Kenric.jpeg' alt='Profile Picture' style='width: 50px; height: 50px;'></td>";
                             echo "<td>" . $row['id'] . "</td>";
                             echo "<td>" . $row['name'] . "</td>";
-                            echo "<td>" . $row['job_title'] . "</td>";
+                            echo "<td>" . $row['user_type'] . "</td>";
                             echo "<td>" . $row['phone'] . "</td>";
                             echo "<td>" . $row['email'] . "</td>";
                             echo "<td>";
@@ -207,7 +207,7 @@ include '../connection/verifier.php';?>
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editModallabel">Edit User</h5>
+                    <h5 class="modal-title" id="editModallabel">Edit Modal</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -225,8 +225,12 @@ include '../connection/verifier.php';?>
                             </div>
                             <div class="form-group">
                                 <label for="edit_job_title">Job Title</label>
-                                <input type="text" class="form-control" id="edit_job_title" placeholder="Enter Job Title">
+                                <select class="form-control" id="edit_job_title">
+                                    <option value="Admin">Admin</option>
+                                    <option value="Employee">Employee</option>
+                                </select>
                             </div>
+
                             <div class="form-group">
                                 <label for="edit_phone">Phone</label>
                                 <input type="text" class="form-control" id="edit_phone" placeholder="Enter Phone">

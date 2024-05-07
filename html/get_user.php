@@ -16,7 +16,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $userData = array(
                 'id' => $row['id'],
                 'name' => $row['name'],
-                'job_title' => $row['job_title'],
+                'job_title' => $row['user_type'],
                 'phone' => $row['phone'],
                 'email' => $row['email']
             );

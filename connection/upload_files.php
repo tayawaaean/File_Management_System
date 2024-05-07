@@ -65,7 +65,9 @@ if (isset($_FILES['fileInput'])) {
         $activityStmt->bind_param("ssss", $author, $job_title, $action, $description);
         
         if ($activityStmt->execute()) {
-            echo "File uploaded successfully";
+            // Redirect back to the page after successful file upload
+            header("Location: ../html/my_files.php");
+            exit();
         } else {
             echo "Error inserting activity log";
         }

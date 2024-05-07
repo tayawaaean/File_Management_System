@@ -50,6 +50,10 @@ if (!file_exists($sourceFolderPath)) {
 
         if ($activityResult) {
             echo "Activity log entry created successfully";
+
+            // Redirect back to the page after successful folder creation
+            header("Location: ../html/my_files.php");
+            exit();
         } else {
             echo "Error creating activity log entry: " . mysqli_error($conn);
         }
