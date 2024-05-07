@@ -207,7 +207,7 @@ include '../connection/verifier.php';?>
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editModallabel">Edit Modal</h5>
+                    <h5 class="modal-title" id="editModallabel">Edit User</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
