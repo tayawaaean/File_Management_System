@@ -224,10 +224,10 @@ include '../connection/verifier.php';?>
                                 <input type="text" class="form-control" id="edit_name" placeholder="Enter Name">
                             </div>
                             <div class="form-group">
-                                <label for="edit_job_title">Job Title</label>
+                                <label for="edit_job_title">User Type</label>
                                 <select class="form-control" id="edit_job_title">
-                                    <option value="Admin">Admin</option>
-                                    <option value="Employee">Employee</option>
+                                    <option value="1">Admin</option>
+                                    <option value="2">Employee</option>
                                 </select>
                             </div>
 

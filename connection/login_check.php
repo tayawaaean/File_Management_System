@@ -15,14 +15,17 @@ function login($username, $password, $conn) {
         // Set session variables
         $_SESSION['username'] = $user['username'];
         $_SESSION['user_type'] = $user['user_type'];
-        if (strtolower($user['user_type']) == 'admin') {
-            // Admin user, redirect to index.html
+        if ($user['user_type'] == 1) {
+            // User type 1, redirect to index.html
             header("Location: index.php");
             exit();
-        } else {
-            // Non-admin user, redirect to employee_index.html
+        } elseif ($user['user_type'] == 2) {
+            // User type 2, redirect to employee_index.html
             header("Location: employee_index.php");
             exit();
+        } else {
+            // Invalid user type
+            return false;
         }
     } else {
         // Account not found
@@ -33,10 +36,10 @@ function login($username, $password, $conn) {
 // Check if the user is already logged in
 if (isset($_SESSION['username']) && isset($_SESSION['user_type'])) {
     // Redirect to appropriate page based on user type
-    if (strtolower($_SESSION['user_type']) == 'admin') {
+    if ($_SESSION['user_type'] == 1) {
         header("Location: index.php");
         exit();
-    } else {
+    } elseif ($_SESSION['user_type'] == 2) {
         header("Location: employee_index.php");
         exit();
     }
