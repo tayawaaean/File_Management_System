@@ -3,6 +3,34 @@ session_start();
 include '../connection/connection.php';
 include '../connection/login_checker.php';
 ?>
+<?php
+// Check if the user is logged in
+if (!isset($_SESSION['username'])) {
+    // Redirect to login page or handle unauthorized access
+    header("Location: login.php");
+    exit();
+}
+
+// Include necessary files
+include '../connection/connection.php';
+include '../connection/login_checker.php';
+
+// Get the username from the session
+$username = $_SESSION['username'];
+
+// Fetch folder names from the database
+$stmt = $conn->prepare("SELECT folder_name FROM folders WHERE username = ?");
+$stmt->bind_param("s", $username);
+$stmt->execute();
+$result = $stmt->get_result();
+
+// Store fetched folder names in an array
+$folders = [];
+while ($row = $result->fetch_assoc()) {
+    $folders[] = $row['folder_name'];
+}
+$stmt->close();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,17 +44,16 @@ include '../connection/login_checker.php';
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Sharp" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
     <!-- Example Font Awesome CDN link -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
-
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
     <!-- Internal CSS -->
     
     <link rel="stylesheet" href="../css/my_files.css">
+    
+
     <script src="../js/my_files.js"></script>
-    <script>
-    function createFolder(event) {
+    <script> function createFolder(event) {
     event.preventDefault(); // Prevent default form submission behavior
 
     // Get the folder name from the input field
@@ -52,90 +79,8 @@ include '../connection/login_checker.php';
     xhr.send('folderName=' + encodeURIComponent(folderName)); // Send folder name to PHP script
 }
     </script>
-<script>
-    function uploadFile() {
-        // Get the form element
-        var form = document.getElementById("fileUploadForm");
 
-        // Create FormData object to send files
-        var formData = new FormData(form);
-
-        // Add selected folder name to FormData
-        var selectedFolder = document.getElementById("destinationFolder").value;
-        formData.append("folderName", selectedFolder);
-
-        // Create XMLHttpRequest object
-        var xhr = new XMLHttpRequest();
-
-        // Define what happens on successful data submission
-        xhr.onload = function() {
-            if (xhr.status === 200) {
-                alert(xhr.responseText); // Display success message
-            } else {
-                alert("Error uploading file."); // Display error message
-            }
-        };
-
-        // Define what happens in case of error
-        xhr.onerror = function() {
-            alert("Error uploading file."); // Display error message
-        };
-
-        // Open connection to the server
-        xhr.open("POST", "../connection/upload_files.php", true);
-
-        // Send data
-        xhr.send(formData);
-    }
-</script>
-<script>
-// Function to handle folder upload
-function uploadFolder() {
-    // Get the selected folder input element
-    var folderInput = document.getElementById('folderInput');
-    // Get the selected destination folder
-    var destinationFolder = document.getElementById('destinationFolder_2').value;
-
-    // Check if a folder is selected
-    if (destinationFolder === 'none') {
-        alert("Please select a destination folder.");
-        return;
-    }
-
-    // Check if a folder is selected
-    if (folderInput.files.length === 0) {
-        alert("Please select a folder to upload.");
-        return;
-    }
-
-    // Create FormData object to send data to the server
-    var formData = new FormData();
-    // Add the selected folder(s) to the FormData object
-    for (var i = 0; i < folderInput.files.length; i++) {
-        formData.append('folderInput[]', folderInput.files[i]);
-    }
-    // Add the selected destination folder to the FormData object
-    formData.append('folderName', destinationFolder);
-
-    // Send a POST request to upload the folder(s)
-    var xhr = new XMLHttpRequest();
-    xhr.open('POST', '../connection/upload_folder.php', true);
-    xhr.onload = function() {
-        if (xhr.status === 200) {
-            // If the upload is successful, display a success message
-            alert(xhr.responseText);
-            // Optionally, reload the page to update the folder list
-            location.reload();
-        } else {
-            // If there's an error, display an error message
-            alert('Error uploading folder: ' + xhr.statusText);
-        }
-    };
-    // Send the FormData object
-    xhr.send(formData);
-}
-</script>
-       <title>BNHS File Management System</title> 
+    <title>BNHS File Management System</title> 
 </head>
 <body>
     <nav>
@@ -160,10 +105,6 @@ function uploadFolder() {
                 <li><a href="personal_info.php">
                     <i class="material-symbols-outlined">person</i>
                     <span class="link-name">Personal Info</span>
-                </a></li>
-                <li><a href="inbox.php">
-                    <i class="material-symbols-outlined">person</i>
-                    <span class="link-name">Inbox</span>
                 </a></li>
             </ul>
             
@@ -206,35 +147,23 @@ function uploadFolder() {
             </div>
 
             <div id="fileUploadPopup" class="popup" style="display: none;">
-            <h3>Upload File</h3>
-<form id="fileUploadForm" enctype="multipart/form-data">
-    <input type="file" id="fileInput" name="fileInput">
-    <div style="display: inline-block; vertical-align: top;">
-        <p>Choose a folder:</p>
-        <select id="destinationFolder">
-            <option value="none">None</option>
-            <?php
-            // Fetch folders from the database based on the username
-            $username = $_SESSION['username'];
-            $query = "SELECT folder_name FROM folders WHERE username = ?";
-            $stmt = $conn->prepare($query);
-            $stmt->bind_param("s", $username);
-            $stmt->execute();
-            $result = $stmt->get_result();
-
-            // Generate <option> elements for each folder
-            while ($row = $result->fetch_assoc()) {
-                $folderName = $row['folder_name'];
-                echo "<option value='$folderName'>$folderName</option>";
-            }
-            ?>
-        </select>
-    </div>
-    <div style="display: block;">
-        <button type="button" id="uploadFileBtn" onclick="uploadFile()">Upload</button>
-        <button type="button" id="cancelUploadBtn" onclick="cancelFileUpload()">Cancel</button>
-    </div>
-</form>
+    <h3>Upload File</h3>
+    <form id="fileUploadForm" enctype="multipart/form-data">
+        <input type="file" id="fileInput" name="fileInput">
+        <div style="display: inline-block; vertical-align: top;">
+            <p>Choose a folder:</p>
+            <select id="destinationFolder">
+                <option value="none">None</option> <!-- New option -->
+                <?php foreach ($folders as $folder): ?>
+                    <option value="<?php echo htmlspecialchars($folder); ?>"><?php echo htmlspecialchars($folder); ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <div style="display: block;">
+            <button type="submit" id="uploadFileBtn">Upload</button>
+            <button type="button" id="cancelUploadBtn" onclick="cancelFileUpload()">Cancel</button>
+        </div>
+    </form>
 </div>
 
 <div id="folderUploadPopup" class="popup" style="display: none;">
@@ -243,31 +172,22 @@ function uploadFolder() {
         <input type="file" id="folderInput" name="folderInput" multiple directory webkitdirectory mozdirectory>
         <div style="display: inline-block; vertical-align: top;">
             <p>Choose a folder:</p>
-            <select id="destinationFolder_2">
-                <option value="none">None</option>
-                <?php
-                // Fetch folders from the database based on the username
-                $username = $_SESSION['username'];
-                $query = "SELECT folder_name FROM folders WHERE username = ?";
-                $stmt = $conn->prepare($query);
-                $stmt->bind_param("s", $username);
-                $stmt->execute();
-                $result = $stmt->get_result();
-
-                // Generate <option> elements for each folder
-                while ($row = $result->fetch_assoc()) {
-                    $folderName = $row['folder_name'];
-                    echo "<option value='$folderName'>$folderName</option>";
-                }
-                ?>
+            <select id="destinationFolder">
+                <option value="none">None</option> <!-- New option -->
+                <?php foreach ($folders as $folder): ?>
+                    <option value="<?php echo htmlspecialchars($folder); ?>"><?php echo htmlspecialchars($folder); ?></option>
+                <?php endforeach; ?>
             </select>
         </div>
         <div style="display: block;">
-            <button type="button" id="uploadFolderBtn" onclick="uploadFolder()">Upload</button>
+            <button type="submit" id="uploadFolderBtn">Upload</button>
             <button type="button" id="cancelFolderUploadBtn" onclick="cancelFolderUpload()">Cancel</button>
         </div>
     </form>
 </div>
+
+
+            <!-- Search Box and Sort Select -->
 <div class="container" id="dropdrag">
     <div class="bottom-search">
         <div class="search">
@@ -320,7 +240,7 @@ function uploadFolder() {
             <button type="button" id="cancelButton" class="button" onclick="cancelFolderCreation()">Cancel</button>
         </div>
     </form>
-    </div>
+</div>
     <div id="renamePopup" class="popup" style="display: none;">
         <form id="renameForm">
          <label for="newFolderName" class="label">New Folder Name:</label>
@@ -342,8 +262,12 @@ function uploadFolder() {
     <div class="separation-text" id="seperationText">Folder</div>
     <div class="folder-container" id="folderGrid"> 
     <div class="folders">
-                <div class="folder">Folder 1</div>
-    </div>
+    <?php foreach ($folders as $folder): ?>
+        <a href="my_files.php?folder=<?php echo urlencode($folder); ?>">
+            <div class="folder"><?php echo htmlspecialchars($folder); ?></div>
+        </a>
+    <?php endforeach; ?>
+</div>
 
         </div>
             <!-- Separation text -->
@@ -356,69 +280,22 @@ function uploadFolder() {
                     </div>
                 </div>
                 <div id="fileTable" class="table-containers">
-                <div class="files-table-wrapper">
-                    <table id="filesTable" class="tables">
-                        <thead>
-                            <tr>
-                                <th>File Name</th>
-                                <th>Last Modified</th>
-                                <th>File Size</th>
-                                <th>Folder</th>
-                                <th>Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                                // Check if the user is logged in
-                                if (!isset($_SESSION['username'])) {
-                                    // Redirect to login page or handle unauthorized access
-                                    header("Location: login.php");
-                                    exit();
-                                }
-
-                                // Include necessary files
-                                include '../connection/connection.php';
-                                include '../connection/login_checker.php';
-
-                                // Get the username from the session
-                                $username = $_SESSION['username'];
-
-                                // Fetch files from the database based on the username
-                                $query = "SELECT * FROM files WHERE owner = ?";
-                                $stmt = $conn->prepare($query);
-                                $stmt->bind_param("s", $username);
-                                $stmt->execute();
-                                $result = $stmt->get_result();
-
-                                // Display the files in the table
-                                while ($row = $result->fetch_assoc()) {
-                                    // Decode the file name and file size from binary
-                                    $decodedFileName = base64_decode($row['file_name']);
-                                    $decodedFileSize = base64_decode($row['file_size']);
-                                
-                                    // Output the file details in the table rows
-                                    echo "<tr>";
-                                    echo "<td>$decodedFileName</td>";
-                                    echo "<td>{$row['date_time']}</td>";
-                                    echo "<td>$decodedFileSize</td>";
-                                    echo "<td>{$row['folder_name']}</td>";
-                                    echo "<td>";
-                                    // Add download button with icon
-                                    echo "<a href='../connection/download.php?file_id={$row['id']}' class='btn btn-primary'><i class='bi bi-cloud-download'></i></a>";
-                                    // Add edit button with icon
-                                    echo "<a href='edit.php?file_id={$row['id']}' class='btn btn-warning'><i class='bi bi-pencil'></i></a>";
-                                    // Add delete button with icon
-                                    echo "<a href='../connection/delete.php?file_id={$row['id']}' class='btn btn-danger'><i class='bi bi-trash'></i></a>";
-                                    echo "</td>";
-                                    echo "</tr>";
-                                }    
-                                ?>
-
-                        </tbody>
-                    </table>
+                    <div class="files-table-wrapper">
+                        <table id="filesTable" class="tables">
+                            <thead>
+                                <tr>
+                                    <th>File Name</th>
+                                    <th>Last Modified</th>
+                                    <th>File Size</th>
+                                    <th>Owner</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
-</div>
-
             </div>
         </div>
     </div>
